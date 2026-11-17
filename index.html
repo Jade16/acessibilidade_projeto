@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="claro" class="calmo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início · Clínica Sorriso</title>
+<meta name="description" content="Clínica Sorriso: agende consultas odontológicas, prepare-se com histórias sociais e fale com a clínica só por mensagem. Projeto acessível para pessoas autistas.">
+<meta name="theme-color" content="#3F6E73">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+<script>
+/* Aplica as preferências salvas antes de desenhar a página (evita "piscar" de tema/tamanho). */
+(function(){try{var p=JSON.parse(localStorage.getItem('sorriso:v1')||'{}').prefs||{};var h=document.documentElement;
+if(p.fonte)h.style.fontSize=p.fonte+'%';if(p.tema)h.dataset.tema=p.tema;if(p.calmo===false)h.classList.remove('calmo');
+if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}catch(e){}})();
+</script>
+</head>
+<body>
+
+<!-- Ícones (decorativos, sempre acompanhados de texto) -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-inicio" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7M5 10v10h5v-6h4v6h5V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-agendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-consultas" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="4" cy="6" r="1.5" fill="currentColor"/><circle cx="4" cy="12" r="1.5" fill="currentColor"/><circle cx="4" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-historia" viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="4" width="8" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-escova" viewBox="0 0 24 24"><path d="M4 20 15 9M14 4l6 6-3 3-6-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mais" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 10l5-3v10l-5-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-ajustes" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-novidades" viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M6 18l2-2M16 8l2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-acess" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2" fill="currentColor"/><path d="M5 8l7 1.5L19 8M12 9.5V14l-3 6M12 14l3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17l9-10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 3 2 20h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-som" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 9a4 4 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-libras" viewBox="0 0 24 24"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4.5a1.5 1.5 0 0 1 3 0V11M14 10.5V6a1.5 1.5 0 0 1 3 0v7c0 4-2.5 7-6 7-2.5 0-4-1.5-5.5-4L4 13.5a1.5 1.5 0 0 1 2.5-1.6L8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ============================= CABEÇALHO ============================= -->
+<header class="topo" id="topo">
+  <div class="barra-acess">
+    <div class="largura barra-acess__linha">
+      <nav class="atalhos" aria-label="Atalhos de teclado">
+        <ul>
+          <li><a href="#conteudo" data-pular="conteudo">Ir para o conteúdo <kbd>Alt</kbd>+<kbd>1</kbd></a></li>
+          <li><a href="#menu" data-pular="menu">Ir para o menu <kbd>Alt</kbd>+<kbd>2</kbd></a></li>
+          <li><a href="#rodape" data-pular="rodape">Ir para o rodapé <kbd>Alt</kbd>+<kbd>3</kbd></a></li>
+        </ul>
+      </nav>
+      <div class="ferramentas" role="group" aria-label="Recursos de acessibilidade">
+        <div class="fonte" role="group" aria-label="Tamanho do texto">
+          <span class="fonte__rot" aria-hidden="true">Texto</span>
+          <button type="button" class="btn-ferr" id="fonte-menos">A−<span class="sr-only"> (diminuir o texto)</span></button>
+          <button type="button" class="btn-ferr" id="fonte-padrao">A<span class="sr-only"> (texto no tamanho padrão)</span></button>
+          <button type="button" class="btn-ferr" id="fonte-mais">A+<span class="sr-only"> (aumentar o texto)</span></button>
+          <output id="fonte-valor" class="fonte__valor" aria-live="polite">100%</output>
+        </div>
+        <button type="button" class="btn-ferr btn-ferr--largo" id="btn-contraste" aria-pressed="false">
+          <span class="ico-contraste" aria-hidden="true"></span>Alto contraste
+        </button>
+        <button type="button" class="btn-ferr btn-ferr--largo" id="btn-calmo" role="switch" aria-checked="true" aria-describedby="calmo-dica">
+          <span class="sw" aria-hidden="true"></span>Modo calmo
+        </button>
+        <span id="calmo-dica" class="sr-only">Quando ligado, nada se move sozinho na tela.</span>
+        <button type="button" class="btn-ferr btn-ferr--largo" id="btn-libras">
+          <svg class="ico" aria-hidden="true"><use href="#i-libras"/></svg>Libras
+        </button>
+        <a class="btn-ferr btn-ferr--largo ferr-acess" href="#/acessibilidade">
+          <svg class="ico" aria-hidden="true"><use href="#i-acess"/></svg>Acessibilidade
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="largura marca-linha">
+    <a class="marca" href="#/inicio">
+      <img src="img/logo.svg" alt="" width="48" height="48">
+      <span class="marca__txt"><span class="marca__nome">Clínica Sorriso</span><span class="marca__sub">Odontologia acolhedora para pessoas autistas</span></span>
+      <span class="sr-only">(página inicial)</span>
+    </a>
+    <div class="marca-linha__acoes">
+      <a class="usuario" href="#/entrar" id="link-usuario">Entrar sem senha</a>
+      <a class="btn btn--sec btn--peq" href="#/ajuda">
+        <svg class="ico" aria-hidden="true"><use href="#i-ajuda"/></svg>Ajuda por mensagem
+      </a>
+    </div>
+  </div>
+
+  <nav id="menu" class="menu" aria-label="Menu principal" tabindex="-1">
+    <div class="largura">
+      <ul class="menu__lista">
+        <li><a class="menu__item" href="#/inicio" data-rota="inicio"><svg class="ico" aria-hidden="true"><use href="#i-inicio"/></svg><span>Início</span></a></li>
+        <li><a class="menu__item" href="#/agendar" data-rota="agendar"><svg class="ico" aria-hidden="true"><use href="#i-agendar"/></svg><span>Agendar</span></a></li>
+        <li><a class="menu__item" href="#/consultas" data-rota="consultas"><svg class="ico" aria-hidden="true"><use href="#i-consultas"/></svg><span>Minhas consultas</span></a></li>
+        <li class="so-largo"><a class="menu__item" href="#/como-e" data-rota="como-e"><svg class="ico" aria-hidden="true"><use href="#i-historia"/></svg><span>Como é a consulta</span></a></li>
+        <li class="so-largo"><a class="menu__item" href="#/atividades" data-rota="atividades"><svg class="ico" aria-hidden="true"><use href="#i-escova"/></svg><span>Escovar os dentes</span></a></li>
+        <li class="menu__mais">
+          <button type="button" class="menu__item" id="btn-mais" aria-expanded="false" aria-controls="submenu-mais">
+            <svg class="ico" aria-hidden="true"><use href="#i-mais"/></svg><span>Mais opções</span>
+          </button>
+          <ul class="submenu" id="submenu-mais" hidden>
+            <li class="so-estreito"><a href="#/como-e" data-rota="como-e"><svg class="ico" aria-hidden="true"><use href="#i-historia"/></svg>Como é a consulta</a></li>
+            <li class="so-estreito"><a href="#/atividades" data-rota="atividades"><svg class="ico" aria-hidden="true"><use href="#i-escova"/></svg>Escovar os dentes</a></li>
+            <li><a href="#/teleconsulta" data-rota="teleconsulta"><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg>Teleconsulta</a></li>
+            <li><a href="#/ajuda" data-rota="ajuda"><svg class="ico" aria-hidden="true"><use href="#i-ajuda"/></svg>Ajuda por mensagem</a></li>
+            <li><a href="#/novidades" data-rota="novidades"><svg class="ico" aria-hidden="true"><use href="#i-novidades"/></svg>Novidades do app</a></li>
+            <li><a href="#/ajustes" data-rota="ajustes"><svg class="ico" aria-hidden="true"><use href="#i-ajustes"/></svg>Preferências</a></li>
+            <li><a href="#/acessibilidade" data-rota="acessibilidade"><svg class="ico" aria-hidden="true"><use href="#i-acess"/></svg>Acessibilidade</a></li>
+            <li><a href="#/mapa" data-rota="mapa"><svg class="ico" aria-hidden="true"><use href="#i-mapa"/></svg>Mapa do site</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="faixa-bloqueio" id="faixa-bloqueio" hidden>
+  <div class="largura faixa-bloqueio__linha">
+    <svg class="ico" aria-hidden="true"><use href="#i-cadeado"/></svg>
+    <p><strong>Modo bloqueado ligado.</strong> Só “Como é a consulta” e “Escovar os dentes” estão abertos.</p>
+    <button type="button" class="btn btn--sec btn--peq" id="btn-desbloquear">Desbloquear (adulto)</button>
+  </div>
+</div>
+
+<!-- ============================= CONTEÚDO ============================= -->
+<main id="conteudo" tabindex="-1">
+  <div class="largura">
+    <nav class="trilha" aria-label="Você está aqui">
+      <ol id="trilha-lista"></ol>
+    </nav>
+    <p class="mensagem-geral" id="mensagem-geral" role="status" aria-live="polite"></p>
+
+    <!-- ===================== INÍCIO ===================== -->
+    <section class="vista" data-rota="inicio" aria-labelledby="t-inicio">
+      <div class="inicio-topo">
+        <div>
+          <h1 id="t-inicio" tabindex="-1"><span id="saudacao">Olá!</span> O que você quer fazer hoje?</h1>
+          <p class="lead txt-marina">Escolha uma das três opções. Nada nesta tela se move sozinho.</p>
+          <p class="lead txt-lucas">Escolha uma opção. Você pode ver a consulta antes de ir.</p>
+        </div>
+      </div>
+
+      <div class="grade-inicio">
+        <div class="pilha">
+          <ul class="acoes" aria-label="Ações principais">
+            <li class="txt-marina"><a class="acao acao--prim" href="#/agendar"><svg class="ico" aria-hidden="true"><use href="#i-agendar"/></svg><span><strong>Agendar consulta</strong><small>5 etapas, sem limite de tempo</small></span></a></li>
+            <li class="txt-marina"><a class="acao" href="#/consultas"><svg class="ico" aria-hidden="true"><use href="#i-consultas"/></svg><span><strong>Minhas consultas</strong><small>Ver, confirmar, remarcar ou cancelar</small></span></a></li>
+            <li class="txt-marina"><a class="acao" href="#/como-e"><svg class="ico" aria-hidden="true"><use href="#i-historia"/></svg><span><strong>Como é a consulta</strong><small>Passo a passo com imagens e vídeo sem som</small></span></a></li>
+            <li class="txt-lucas"><a class="acao acao--prim" href="#/como-e"><svg class="ico" aria-hidden="true"><use href="#i-historia"/></svg><span><strong>Ver como é a consulta</strong><small>4 passos com figuras</small></span></a></li>
+            <li class="txt-lucas"><a class="acao" href="#/atividades"><svg class="ico" aria-hidden="true"><use href="#i-escova"/></svg><span><strong>Escovar os dentes</strong><small>5 passos. Depois acaba.</small></span></a></li>
+            <li class="txt-lucas"><a class="acao" href="#/consultas"><svg class="ico" aria-hidden="true"><use href="#i-consultas"/></svg><span><strong>Minha próxima consulta</strong><small>Dia, hora e com quem</small></span></a></li>
+          </ul>
+
+          <section class="cartao" aria-labelledby="t-prox">
+            <h2 id="t-prox" class="cartao__tit">Próxima consulta</h2>
+            <div id="prox-consulta"></div>
+          </section>
+
+          <section class="cartao cartao--perfil" aria-labelledby="t-perfil">
+            <h2 id="t-perfil" class="cartao__tit">Quem está usando o app agora?</h2>
+            <p class="dica" id="perfil-dica">Use as setas do teclado para trocar. A tela se adapta: frases mais curtas e figuras para o Lucas.</p>
+            <div class="perfis" role="radiogroup" aria-labelledby="t-perfil" aria-describedby="perfil-dica" data-radiogroup="perfil">
+              <div role="radio" aria-checked="true" tabindex="0" data-valor="marina" class="perfil">
+                <img src="img/avatar-marina.svg" alt="Avatar da Marina: mulher de cabelo escuro e longo, blusa verde" width="64" height="64">
+                <span><strong>Marina</strong><small>23 anos · usa sozinha</small></span>
+              </div>
+              <div role="radio" aria-checked="false" tabindex="-1" data-valor="lucas" class="perfil">
+                <img src="img/avatar-lucas.svg" alt="Avatar do Lucas: menino de cabelo curto e camiseta azul-petróleo" width="64" height="64">
+                <span><strong>Lucas, com a mãe</strong><small>9 anos · figuras e frases curtas</small></span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="pilha">
+          <figure class="fig">
+            <span class="credito">Imagem gerada por IA</span>
+            <img src="img/recepcao.svg" width="960" height="560" alt="Recepção da Clínica Sorriso: recepcionista acenando atrás do balcão, três cadeiras vazias, uma planta e janela com luz suave.">
+            <figcaption>A recepção é silenciosa e tem luz natural. Se preferir, você pode esperar do lado de fora: avisamos por mensagem quando for sua vez.</figcaption>
+          </figure>
+          <aside class="aviso aviso--info" aria-labelledby="t-novid-curto">
+            <h2 id="t-novid-curto" class="aviso__tit">Mudança no visual prevista para 1º de dezembro</h2>
+            <p>O menu continua no mesmo lugar. Nada muda sem você aceitar.</p>
+            <p><a href="#/novidades">Ver a prévia da mudança e escolher</a></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AGENDAR (caminho feliz) ===================== -->
+    <section class="vista" data-rota="agendar" aria-labelledby="t-agendar" hidden>
+      <h1 id="t-agendar" tabindex="-1">Agendar consulta</h1>
+      <p class="lead">São 5 etapas. Não há limite de tempo: o que você preenche fica salvo neste aparelho, e você pode continuar depois.</p>
+
+      <ol class="etapas" aria-label="Etapas do agendamento" id="etapas">
+        <li data-etapa="1"><span class="etapas__n">1</span><span class="etapas__t">O quê</span></li>
+        <li data-etapa="2"><span class="etapas__n">2</span><span class="etapas__t">Quando</span></li>
+        <li data-etapa="3"><span class="etapas__n">3</span><span class="etapas__t">Conforto</span></li>
+        <li data-etapa="4"><span class="etapas__n">4</span><span class="etapas__t">Seus dados</span></li>
+        <li data-etapa="5"><span class="etapas__n">5</span><span class="etapas__t">Revisar</span></li>
+      </ol>
+      <p class="progresso-txt" id="progresso-txt">Etapa 1 de 5</p>
+
+      <div class="resumo-erros" id="resumo-erros" tabindex="-1" hidden role="alert" aria-labelledby="resumo-erros-tit">
+        <h2 id="resumo-erros-tit"><svg class="ico" aria-hidden="true"><use href="#i-alerta"/></svg><span></span></h2>
+        <ul></ul>
+      </div>
+
+      <div class="aviso aviso--info" id="aviso-retomar" hidden>
+        <p id="aviso-retomar-txt"></p>
+        <button type="button" class="btn btn--sec btn--peq" id="btn-recomecar">Apagar o que preenchi e começar de novo</button>
+      </div>
+
+      <form id="form-agendar" novalidate>
+        <!-- Etapa 1 -->
+        <div class="etapa" data-etapa="1">
+          <h2 tabindex="-1">Etapa 1 de 5: o que você precisa</h2>
+          <fieldset class="campo-grupo" id="g-para">
+            <legend>Para quem é a consulta? <span class="obrig">(obrigatório)</span></legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="para" value="mim" required><span>Para mim</span></label>
+              <label class="opcao"><input type="radio" name="para" value="dependente"><span>Para um dependente (filho, filha ou pessoa sob minha responsabilidade)</span></label>
+            </div>
+            <p class="erro" id="erro-para" hidden></p>
+          </fieldset>
+
+          <div id="bloco-dependente" hidden>
+            <div class="campo">
+              <label for="dep-nome">Nome do dependente <span class="obrig">(obrigatório)</span></label>
+              <input id="dep-nome" name="depNome" type="text" autocomplete="off" placeholder="Exemplo: Lucas Ferreira" aria-describedby="dep-nome-dica">
+              <p class="dica" id="dep-nome-dica">Nome e sobrenome, como está no documento.</p>
+              <p class="erro" id="erro-dep-nome" hidden></p>
+            </div>
+            <div class="campo">
+              <label for="dep-nasc">Data de nascimento do dependente <span class="obrig">(obrigatório)</span></label>
+              <input id="dep-nasc" name="depNasc" type="text" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" data-mascara="data" aria-describedby="dep-nasc-dica">
+              <p class="dica" id="dep-nasc-dica">Só números. As barras aparecem sozinhas. Exemplo: 05/08/2017.</p>
+              <p class="erro" id="erro-dep-nasc" hidden></p>
+            </div>
+          </div>
+
+          <fieldset class="campo-grupo" id="g-tipo">
+            <legend>Tipo de consulta <span class="obrig">(obrigatório)</span></legend>
+            <div class="opcoes opcoes--cartao">
+              <label class="opcao"><input type="radio" name="tipo" value="avaliacao"><span><strong>Avaliação e limpeza</strong><small>Cerca de 40 minutos. A dentista olha os dentes e faz a limpeza.</small></span></label>
+              <label class="opcao"><input type="radio" name="tipo" value="retorno"><span><strong>Retorno</strong><small>Cerca de 20 minutos. Continuação de um tratamento.</small></span></label>
+              <label class="opcao"><input type="radio" name="tipo" value="dor"><span><strong>Dor ou dente quebrado</strong><small>Cerca de 30 minutos. Atendimento no mesmo dia ou no dia seguinte.</small></span></label>
+            </div>
+            <p class="erro" id="erro-tipo" hidden></p>
+          </fieldset>
+
+          <fieldset class="campo-grupo" id="g-formato">
+            <legend>Como você quer ser atendido? <span class="obrig">(obrigatório)</span></legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="formato" value="presencial"><span><strong>Na clínica</strong><small>Rua Episcopal, 120 – térreo, com rampa</small></span></label>
+              <label class="opcao"><input type="radio" name="formato" value="tele"><span><strong>Teleconsulta</strong><small>Por vídeo, só áudio ou só mensagens. Você escolhe no dia. A câmera começa desligada.</small></span></label>
+            </div>
+            <p class="erro" id="erro-formato" hidden></p>
+          </fieldset>
+        </div>
+
+        <!-- Etapa 2 -->
+        <div class="etapa" data-etapa="2" hidden>
+          <h2 tabindex="-1">Etapa 2 de 5: com quem e quando</h2>
+          <fieldset class="campo-grupo" id="g-prof">
+            <legend>Com qual profissional? <span class="obrig">(obrigatório)</span></legend>
+            <div class="profs">
+              <div class="prof">
+                <img src="img/dra-ana.svg" width="320" height="320" alt="Retrato ilustrado da Dra. Ana Lima: mulher de óculos, cabelo castanho preso e jaleco branco.">
+                <label class="opcao opcao--prof"><input type="radio" name="prof" value="ana"><span><strong>Dra. Ana Lima</strong><small>Clínica geral · atende adultos e adolescentes autistas há 8 anos · avisa antes de cada etapa</small></span></label>
+              </div>
+              <div class="prof">
+                <img src="img/dr-rafael.svg" width="320" height="320" alt="Retrato ilustrado do Dr. Rafael Souza: homem negro de cabelo cacheado, barba curta e jaleco branco.">
+                <label class="opcao opcao--prof"><input type="radio" name="prof" value="rafael"><span><strong>Dr. Rafael Souza</strong><small>Odontopediatria · crianças até 14 anos · deixa a criança tocar nos instrumentos antes</small></span></label>
+              </div>
+              <div class="prof">
+                <img src="img/dra-helena.svg" width="320" height="320" alt="Retrato ilustrado da Dra. Helena Prado: mulher de cabelo longo e claro e jaleco branco.">
+                <label class="opcao opcao--prof"><input type="radio" name="prof" value="helena"><span><strong>Dra. Helena Prado</strong><small>Ortodontia (aparelhos) · atende em horários de pouco movimento</small></span></label>
+              </div>
+            </div>
+            <p class="erro" id="erro-prof" hidden></p>
+          </fieldset>
+
+          <div class="campo-grupo" id="g-dia">
+            <h3 class="legenda" id="rot-dia">Escolha o dia <span class="obrig">(obrigatório)</span></h3>
+            <p class="dica" id="dica-dia">Use as setas para mudar de dia. Mostramos só dias com horário livre.</p>
+            <div class="chips" role="radiogroup" aria-labelledby="rot-dia" aria-describedby="dica-dia" aria-required="true" id="rg-dia" data-radiogroup="dia"></div>
+            <p class="erro" id="erro-dia" hidden></p>
+          </div>
+
+          <div class="campo-grupo" id="g-hora">
+            <h3 class="legenda" id="rot-hora">Escolha o horário <span class="obrig">(obrigatório)</span></h3>
+            <p class="dica" id="dica-hora">Escolha primeiro o profissional e o dia.</p>
+            <div class="chips" role="radiogroup" aria-labelledby="rot-hora" aria-describedby="dica-hora" aria-required="true" id="rg-hora" data-radiogroup="hora"></div>
+            <p class="erro" id="erro-hora" hidden></p>
+          </div>
+        </div>
+
+        <!-- Etapa 3 -->
+        <div class="etapa" data-etapa="3" hidden>
+          <h2 tabindex="-1">Etapa 3 de 5: como deixar a visita mais confortável</h2>
+          <p>Esta etapa é opcional. A equipe recebe estas escolhas antes da consulta.</p>
+          <fieldset class="campo-grupo">
+            <legend>Marque o que ajuda você</legend>
+            <div class="opcoes">
+              <label class="opcao opcao--check"><input type="checkbox" name="conforto" value="silencio"><span>Sala mais silenciosa, sem música ambiente</span></label>
+              <label class="opcao opcao--check"><input type="checkbox" name="conforto" value="luz"><span>Luz mais baixa e óculos escuros à disposição</span></label>
+              <label class="opcao opcao--check"><input type="checkbox" name="conforto" value="avisar"><span>A dentista avisa antes de cada etapa e de cada barulho</span></label>
+              <label class="opcao opcao--check"><input type="checkbox" name="conforto" value="esperar"><span>Esperar do lado de fora e receber mensagem quando for a vez</span></label>
+              <label class="opcao opcao--check"><input type="checkbox" name="conforto" value="pausa"><span>Combinar um sinal para pedir pausa (levantar a mão)</span></label>
+              <label class="opcao opcao--check"><input type="checkbox" name="conforto" value="fones"><span>Usar meus fones abafadores durante a consulta</span></label>
+            </div>
+          </fieldset>
+          <div class="campo">
+            <label for="obs">Algo mais que a equipe deve saber? <span class="opc">(opcional)</span></label>
+            <textarea id="obs" name="obs" rows="4" maxlength="300" placeholder="Exemplo: não gosto do sabor de menta; prefiro que não toquem no meu rosto sem avisar." aria-describedby="obs-cont"></textarea>
+            <p class="dica" id="obs-cont" aria-live="polite">Você pode escrever até 300 caracteres. Restam 300.</p>
+          </div>
+        </div>
+
+        <!-- Etapa 4 -->
+        <div class="etapa" data-etapa="4" hidden>
+          <h2 tabindex="-1">Etapa 4 de 5: seus dados</h2>
+          <div class="aviso aviso--ok" id="dados-salvos" hidden>
+            <p><strong>Usamos os dados que você já salvou.</strong> Confira e mude o que precisar. Não há CAPTCHA nem senha.</p>
+          </div>
+          <p id="dados-entrar"><a href="#/entrar">Já tem cadastro? Entre sem senha, por um link no e-mail</a>, e os campos são preenchidos para você.</p>
+          <p class="dica">Todos os campos desta etapa são obrigatórios, exceto quando indicado.</p>
+          <div class="campo">
+            <label for="nome">Nome completo</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Exemplo: Marina Oliveira" aria-required="true" aria-describedby="erro-nome">
+            <p class="erro" id="erro-nome" hidden></p>
+          </div>
+          <div class="campo campo--meio">
+            <label for="nasc">Data de nascimento</label>
+            <input id="nasc" name="nasc" type="text" inputmode="numeric" autocomplete="bday" placeholder="dd/mm/aaaa" maxlength="10" data-mascara="data" aria-required="true" aria-describedby="nasc-dica erro-nasc">
+            <p class="dica" id="nasc-dica">Só números. Exemplo: 14/03/2003.</p>
+            <p class="erro" id="erro-nasc" hidden></p>
+          </div>
+          <div class="campo campo--meio">
+            <label for="cpf">CPF</label>
+            <input id="cpf" name="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" data-mascara="cpf" aria-required="true" aria-describedby="cpf-dica erro-cpf">
+            <p class="dica" id="cpf-dica">11 números. Pontos e traço aparecem sozinhos. Exemplo: 123.456.789-09.</p>
+            <p class="erro" id="erro-cpf" hidden></p>
+          </div>
+          <div class="campo campo--meio">
+            <label for="cel">Celular com DDD</label>
+            <input id="cel" name="cel" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(16) 99999-9999" maxlength="15" data-mascara="cel" aria-required="true" aria-describedby="cel-dica erro-cel">
+            <p class="dica" id="cel-dica">Usamos só para mensagens de texto. Nunca ligamos sem você pedir.</p>
+            <p class="erro" id="erro-cel" hidden></p>
+          </div>
+          <div class="campo campo--meio">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="exemplo@email.com" aria-required="true" aria-describedby="erro-email">
+            <p class="erro" id="erro-email" hidden></p>
+          </div>
+          <fieldset class="campo-grupo" id="g-avisos">
+            <legend>Como você quer receber os lembretes? <span class="opc">(escolha um ou mais)</span></legend>
+            <div class="opcoes">
+              <label class="opcao opcao--check"><input type="checkbox" name="avisos" value="email" checked><span>E-mail</span></label>
+              <label class="opcao opcao--check"><input type="checkbox" name="avisos" value="sms"><span>Mensagem de texto (SMS)</span></label>
+              <label class="opcao opcao--check"><input type="checkbox" name="avisos" value="whatsapp"><span>WhatsApp (só mensagem escrita)</span></label>
+            </div>
+            <p class="erro" id="erro-avisos" hidden></p>
+          </fieldset>
+          <div class="campo">
+            <label class="opcao opcao--check opcao--solta" id="g-lgpd"><input type="checkbox" id="lgpd" name="lgpd" aria-describedby="lgpd-dica erro-lgpd"><span>Concordo que a Clínica Sorriso use estes dados só para marcar e lembrar a consulta.</span></label>
+            <p class="dica" id="lgpd-dica">Seus dados não são vendidos nem usados para propaganda (Lei Geral de Proteção de Dados).</p>
+            <p class="erro" id="erro-lgpd" hidden></p>
+          </div>
+        </div>
+
+        <!-- Etapa 5 -->
+        <div class="etapa" data-etapa="5" hidden>
+          <h2 tabindex="-1">Etapa 5 de 5: confira antes de confirmar</h2>
+          <p>Leia com calma. Para mudar algo, use o botão “Alterar” ao lado do item.</p>
+          <dl class="resumo" id="resumo-agendamento"></dl>
+          <div class="aviso aviso--info">
+            <h3 class="aviso__tit">O que acontece quando você tocar em “Confirmar agendamento”</h3>
+            <ol>
+              <li>A consulta fica marcada e aparece em “Minhas consultas”.</li>
+              <li>Você recebe um resumo pelos canais que escolheu.</li>
+              <li>Você pode remarcar ou cancelar até 24 horas antes, sem custo e sem precisar ligar.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="form-acoes">
+          <button type="button" class="btn btn--sec" id="btn-voltar">Voltar para a etapa anterior</button>
+          <button type="submit" class="btn btn--prim" id="btn-avancar">Continuar para a etapa 2</button>
+        </div>
+        <p class="salvo" id="salvo"></p>
+      </form>
+    </section>
+
+    <!-- ===================== CONFIRMADO ===================== -->
+    <section class="vista" data-rota="confirmado" aria-labelledby="t-confirmado" hidden>
+      <div class="confirmado">
+        <figure class="fig fig--peq">
+          <span class="credito">Imagem gerada por IA</span>
+          <img src="img/confirmado.svg" width="520" height="360" alt="Calendário com um grande sinal verde de confirmado.">
+        </figure>
+        <div>
+          <h1 id="t-confirmado" tabindex="-1">Pronto! Sua consulta está marcada</h1>
+          <p class="lead">Guardamos tudo em “Minhas consultas”. Abaixo está exatamente o que vai acontecer.</p>
+        </div>
+      </div>
+      <div class="grade-2">
+        <section class="cartao" aria-labelledby="t-conf-resumo">
+          <h2 id="t-conf-resumo" class="cartao__tit">Resumo da consulta</h2>
+          <dl class="resumo resumo--fixo" id="conf-resumo"></dl>
+          <div class="botoes">
+            <button type="button" class="btn btn--prim" id="btn-ics">Baixar lembrete para a agenda (arquivo .ics)</button>
+            <a class="btn btn--sec" href="#/como-e">Ver como é a consulta, passo a passo</a>
+          </div>
+        </section>
+        <section class="cartao" aria-labelledby="t-conf-depois">
+          <h2 id="t-conf-depois" class="cartao__tit">O que acontece agora</h2>
+          <ol class="passos-lista" id="conf-depois"></ol>
+        </section>
+      </div>
+      <section class="cartao" aria-labelledby="t-chegar" id="bloco-chegar">
+        <h2 id="t-chegar" class="cartao__tit">Como chegar</h2>
+        <div class="grade-2 grade-2--meio">
+          <figure class="fig">
+            <span class="credito">Imagem gerada por IA</span>
+            <img src="img/fachada.svg" width="960" height="520" alt="Fachada térrea da Clínica Sorriso, número 120, com porta de vidro, rampa com corrimão, placa de acessibilidade e uma árvore na calçada.">
+          </figure>
+          <div>
+            <p><strong>Endereço:</strong> Rua Episcopal, 120 – Centro, São Carlos (SP). Prédio térreo, com rampa.</p>
+            <p><strong>Ao chegar:</strong> a porta é de vidro e abre para dentro. A recepção fica logo à frente. Diga seu nome ou mostre a tela “Minhas consultas”.</p>
+            <p><strong>Barulho:</strong> a rua tem pouco movimento antes das 10h.</p>
+            <p><a href="https://www.openstreetmap.org/search?query=Rua%20Episcopal%2C%20S%C3%A3o%20Carlos%2C%20SP" target="_blank" rel="noopener">Abrir a rua no mapa OpenStreetMap <span class="sr-only">(abre em nova aba)</span><span aria-hidden="true"> ↗ (nova aba)</span></a></p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===================== MINHAS CONSULTAS ===================== -->
+    <section class="vista" data-rota="consultas" aria-labelledby="t-consultas" hidden>
+      <h1 id="t-consultas" tabindex="-1">Minhas consultas</h1>
+      <p class="lead">Aqui ficam as consultas marcadas e as que já aconteceram.</p>
+      <div class="abas" data-abas>
+        <div role="tablist" aria-label="Tipo de lista" class="abas__lista">
+          <button role="tab" id="aba-proximas" aria-selected="true" aria-controls="painel-proximas" tabindex="0" type="button">Próximas</button>
+          <button role="tab" id="aba-anteriores" aria-selected="false" aria-controls="painel-anteriores" tabindex="-1" type="button">Anteriores</button>
+        </div>
+        <div role="tabpanel" id="painel-proximas" aria-labelledby="aba-proximas" tabindex="0">
+          <ul class="lista-consultas" id="lista-proximas"></ul>
+        </div>
+        <div role="tabpanel" id="painel-anteriores" aria-labelledby="aba-anteriores" tabindex="0" hidden>
+          <ul class="lista-consultas" id="lista-anteriores"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COMO É A CONSULTA ===================== -->
+    <section class="vista" data-rota="como-e" aria-labelledby="t-como" hidden>
+      <h1 id="t-como" tabindex="-1">Como é a consulta</h1>
+      <p class="lead">Conheça a consulta antes de ir. Escolha o formato que preferir: figuras, vídeo sem som ou a sala e o kit sensorial.</p>
+      <div class="abas" data-abas>
+        <div role="tablist" aria-label="Formatos da explicação" class="abas__lista">
+          <button role="tab" id="aba-passos" aria-selected="true" aria-controls="painel-passos" tabindex="0" type="button">Passo a passo com figuras</button>
+          <button role="tab" id="aba-video" aria-selected="false" aria-controls="painel-video" tabindex="-1" type="button">Vídeo (sem som, com legendas)</button>
+          <button role="tab" id="aba-sala" aria-selected="false" aria-controls="painel-sala" tabindex="-1" type="button">A sala e o kit sensorial</button>
+        </div>
+
+        <div role="tabpanel" id="painel-passos" aria-labelledby="aba-passos" tabindex="-1">
+          <div class="historia" id="historia">
+            <p class="historia__cont" id="historia-cont" aria-live="polite">Passo 1 de 4</p>
+            <div class="historia__palco">
+              <img id="historia-img" src="img/picto-1-chegar.svg" width="240" height="240" alt="">
+              <div>
+                <h2 id="historia-tit" class="historia__tit"></h2>
+                <p id="historia-txt" class="historia__txt"></p>
+                <button type="button" class="btn btn--sec btn--peq" id="btn-ouvir-passo"><svg class="ico" aria-hidden="true"><use href="#i-som"/></svg><span>Ouvir este passo</span></button>
+              </div>
+            </div>
+            <ol class="historia__trilha" aria-label="Todos os passos" id="historia-trilha"></ol>
+            <div class="form-acoes">
+              <button type="button" class="btn btn--sec" id="hist-ant">Passo anterior</button>
+              <button type="button" class="btn btn--prim" id="hist-prox">Próximo passo</button>
+            </div>
+            <p class="dica">Dica: com o foco nos botões, as setas ← e → também mudam o passo.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="painel-video" aria-labelledby="aba-video" tabindex="-1" hidden>
+          <div class="video">
+            <span class="credito">Vídeo gerado por IA</span>
+            <video id="video-historia" controls preload="metadata" playsinline muted poster="media/historia-da-consulta-capa.jpg" width="1280" height="720" aria-describedby="video-desc">
+              <source src="media/historia-da-consulta.mp4" type="video/mp4">
+              <track kind="captions" src="media/historia-da-consulta.vtt" srclang="pt-BR" label="Português (legendas)" default>
+              Seu navegador não mostra vídeos. Leia a transcrição abaixo.
+            </video>
+          </div>
+          <p id="video-desc" class="dica">O vídeo não começa sozinho e não tem som. Ele dura 32 segundos. As legendas já vêm ligadas. Use os controles do vídeo para tocar, pausar, voltar e ver em tela cheia.</p>
+          <div class="video-controles" role="group" aria-label="Controles extras do vídeo">
+            <button type="button" class="btn btn--sec btn--peq" id="vid-play">Tocar o vídeo</button>
+            <button type="button" class="btn btn--sec btn--peq" id="vid-voltar">Voltar 5 segundos</button>
+            <button type="button" class="btn btn--sec btn--peq" id="vid-legenda" aria-pressed="true">Legendas ligadas</button>
+            <label class="vel">Velocidade
+              <select id="vid-vel">
+                <option value="0.75">Mais devagar (0,75×)</option>
+                <option value="1" selected>Normal (1×)</option>
+              </select>
+            </label>
+          </div>
+          <details class="transcricao">
+            <summary>Ler a transcrição completa do vídeo, com a descrição das imagens</summary>
+            <ol>
+              <li><strong>Abertura (0 a 4 s).</strong> Um dente sorridente e o título “Como é uma consulta no dentista. São 4 passos.”</li>
+              <li><strong>Passo 1 (4 a 11 s).</strong> Imagem: Lucas e a mãe em pé na recepção, ao lado de três cadeiras; um relógio na parede. Texto: “Você chega com sua mãe e fala seu nome na recepção. Depois, você espera sentado. A espera dura cerca de 10 minutos.”</li>
+              <li><strong>Passo 2 (11 a 18 s).</strong> Imagem: Lucas sentado na cadeira do dentista; a Dra. Ana acena e um balão diz “Vou deitar a cadeira”. Texto: “Você senta na cadeira. A Dra. Ana avisa antes de deitar a cadeira um pouco para trás.”</li>
+              <li><strong>Passo 3 (18 a 25 s).</strong> Imagem: uma luz acesa sobre Lucas, que usa óculos escuros; um balão diz “A luz é forte e não esquenta”. Texto: “Uma luz forte acende em cima de você. Ela não esquenta. Você pode usar óculos escuros e fones abafadores.”</li>
+              <li><strong>Passo 4 (25 a 32 s).</strong> Imagem: Lucas acena ao lado da mãe, perto de uma casa; um balão diz “Acabou!”. Texto: “A Dra. Ana diz: acabou! Você levanta e vai para casa com sua mãe.”</li>
+            </ol>
+          </details>
+        </div>
+
+        <div role="tabpanel" id="painel-sala" aria-labelledby="aba-sala" tabindex="-1" hidden>
+          <div class="grade-2 grade-2--meio">
+            <figure class="fig">
+              <span class="credito">Imagem gerada por IA</span>
+              <img src="img/sala-atendimento.svg" width="960" height="560" alt="Sala 3 de atendimento: cadeira odontológica reclinável azul-petróleo, luminária desligada, armário claro e janela com persiana.">
+              <figcaption>Sala 3, no térreo. A janela tem persiana para diminuir a luz.</figcaption>
+            </figure>
+            <div>
+              <h2>Você pode pedir</h2>
+              <ul class="lista-check">
+                <li>Conhecer a sala e tocar nos instrumentos antes de começar.</li>
+                <li>Que a dentista explique cada barulho antes de ligar o aparelho.</li>
+                <li>Uma pausa, levantando a mão. A dentista para na hora.</li>
+                <li>Que a consulta seja dividida em mais de um dia.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grade-2 grade-2--meio">
+            <figure class="fig">
+              <span class="credito">Imagem gerada por IA</span>
+              <img src="img/kit-sensorial.svg" width="900" height="500" alt="Kit sensorial sobre uma mesa: fones abafadores de ruído, óculos escuros, bolinha de apertar e garrafa de água, cada um com seu nome escrito embaixo.">
+            </figure>
+            <div>
+              <h2>Kit sensorial da clínica</h2>
+              <p>Fica na recepção. Peça quando chegar. Você também pode levar o seu.</p>
+              <ul>
+                <li><strong>Fones abafadores:</strong> diminuem o barulho do motor.</li>
+                <li><strong>Óculos escuros:</strong> para a luz forte.</li>
+                <li><strong>Bolinha de apertar:</strong> para as mãos.</li>
+                <li><strong>Água:</strong> para enxaguar a boca quando quiser.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TELECONSULTA ===================== -->
+    <section class="vista" data-rota="teleconsulta" aria-labelledby="t-tele" hidden>
+      <h1 id="t-tele" tabindex="-1">Teleconsulta</h1>
+      <div id="tele-preparo">
+        <div class="grade-2">
+          <div>
+            <div class="cartao">
+              <h2 class="cartao__tit">Sua teleconsulta</h2>
+              <dl class="resumo resumo--fixo" id="tele-info"></dl>
+            </div>
+            <div class="campo-grupo">
+              <h2 class="legenda" id="rot-canal">Como você quer participar?</h2>
+              <p class="dica" id="dica-canal">Você pode trocar a qualquer momento durante a consulta. Use as setas para escolher.</p>
+              <div class="canais" role="radiogroup" aria-labelledby="rot-canal" aria-describedby="dica-canal" data-radiogroup="canal">
+                <div role="radio" aria-checked="false" tabindex="-1" data-valor="video" class="canal"><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg><span><strong>Vídeo</strong><small>Você vê a dentista. Sua câmera só liga se você quiser.</small></span></div>
+                <div role="radio" aria-checked="false" tabindex="-1" data-valor="audio" class="canal"><svg class="ico" aria-hidden="true"><use href="#i-som"/></svg><span><strong>Só áudio</strong><small>Como uma ligação, com legendas na tela.</small></span></div>
+                <div role="radio" aria-checked="true" tabindex="0" data-valor="chat" class="canal"><svg class="ico" aria-hidden="true"><use href="#i-ajuda"/></svg><span><strong>Só mensagens</strong><small>Tudo por escrito. Sem falar e sem câmera.</small></span></div>
+              </div>
+            </div>
+            <div class="pilha pilha--peq">
+              <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-camera"><span><strong>Câmera</strong><small>Começa desligada. Ninguém vê você se ela estiver desligada.</small></span><span class="sw" aria-hidden="true"></span></button>
+              <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-autoimagem"><span><strong>Ver minha própria imagem</strong><small>Desligado: você não se vê na tela.</small></span><span class="sw" aria-hidden="true"></span></button>
+              <button type="button" class="interruptor" role="switch" aria-checked="true" id="sw-legendas"><span><strong>Legendas</strong><small>Tudo o que a dentista falar aparece escrito.</small></span><span class="sw" aria-hidden="true"></span></button>
+              <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-escuro"><span><strong>Sala com tela escura</strong><small>Menos luz vinda da tela.</small></span><span class="sw" aria-hidden="true"></span></button>
+            </div>
+          </div>
+          <div>
+            <figure class="fig">
+              <span class="credito">Imagem gerada por IA</span>
+              <img src="img/teleconsulta.svg" width="960" height="540" alt="Mulher sentada diante de um notebook em teleconsulta por mensagens de texto; o ícone da câmera está riscado e uma placa diz Câmera desligada.">
+            </figure>
+            <div class="cartao">
+              <h2 class="cartao__tit">O que vai acontecer</h2>
+              <ol class="passos-lista">
+                <li>A Dra. Ana entra na sala e diz o nome dela.</li>
+                <li>Ela faz 3 perguntas sobre o dente, uma de cada vez.</li>
+                <li>Vocês combinam o próximo passo. A consulta acaba em até 15 minutos.</li>
+              </ol>
+            </div>
+            <button type="button" class="btn btn--prim btn--largo" id="btn-entrar-sala">Entrar na sala</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="tele-sala" class="sala" hidden>
+        <div class="sala__topo">
+          <h2 tabindex="-1" id="t-sala">Sala de teleconsulta com a Dra. Ana Lima</h2>
+          <p class="sala__estado" id="sala-estado"></p>
+        </div>
+        <div class="sala__corpo">
+          <div class="sala__video" id="sala-video" aria-hidden="true"><span class="iniciais">AL</span><span>Dra. Ana Lima</span></div>
+          <div class="chat">
+            <div class="chat__log" role="log" aria-label="Conversa com a Dra. Ana" aria-live="polite" id="sala-log" tabindex="0"></div>
+            <p class="chat__digitando" id="sala-digitando"></p>
+            <div class="chat__rapidas" id="sala-rapidas" role="group" aria-label="Respostas rápidas"></div>
+            <form class="chat__form" id="sala-form">
+              <label for="sala-msg">Sua mensagem</label>
+              <div class="chat__linha">
+                <input id="sala-msg" type="text" autocomplete="off" placeholder="Escreva aqui e toque em Enviar">
+                <button class="btn btn--prim" type="submit">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <button type="button" class="btn btn--sec" id="btn-sair-sala">Sair da sala</button>
+      </div>
+
+      <div id="tele-fim" hidden>
+        <div class="aviso aviso--ok">
+          <h2 class="aviso__tit" tabindex="-1" id="t-tele-fim">A teleconsulta terminou</h2>
+          <p>O resumo foi enviado para o seu e-mail. Próximo passo combinado: <strong>marcar a limpeza na clínica</strong>.</p>
+          <p><a href="#/agendar">Agendar a limpeza agora</a> ou <a href="#/inicio">voltar ao início</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ATIVIDADE: ESCOVAR ===================== -->
+    <section class="vista" data-rota="atividades" aria-labelledby="t-ativ" hidden>
+      <h1 id="t-ativ" tabindex="-1">Escovar os dentes</h1>
+      <p class="lead">São 5 passos. Cada passo tem um tempo. Quando o último passo acaba, a atividade acaba. Não tem compras, prêmio-surpresa nem propaganda.</p>
+      <div class="tempo-tela">
+        <span id="tempo-tela-rot">Tempo de tela combinado com a mãe hoje: 15 minutos. Já usados: 4 minutos.</span>
+        <div class="barra" role="progressbar" aria-labelledby="tempo-tela-rot" aria-valuemin="0" aria-valuemax="15" aria-valuenow="4" aria-valuetext="4 de 15 minutos usados"><span style="width:26.6%"></span></div>
+      </div>
+
+      <div class="ativ" id="ativ">
+        <div class="ativ__painel">
+          <p class="ativ__agora" id="ativ-agora" aria-live="polite"></p>
+          <div class="ativ__centro">
+            <img id="ativ-img" src="img/escova-1-molhar.svg" width="240" height="240" alt="">
+            <div class="relogio" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="relogio__fundo"/><circle cx="60" cy="60" r="52" class="relogio__arco" id="relogio-arco" pathLength="100"/></svg><span id="relogio-num">30</span></div>
+          </div>
+          <p class="ativ__timer" role="timer" aria-live="off" id="ativ-timer">Faltam 30 segundos neste passo.</p>
+          <p class="ativ__depois" id="ativ-depois"></p>
+          <div class="botoes">
+            <button type="button" class="btn btn--prim" id="ativ-iniciar">Começar</button>
+            <button type="button" class="btn btn--sec" id="ativ-pular">Ir para o próximo passo</button>
+            <button type="button" class="btn btn--sec" id="ativ-parar">Terminar agora</button>
+          </div>
+          <label class="vel">Tempo de cada passo
+            <select id="ativ-duracao">
+              <option value="10">10 segundos (para testar)</option>
+              <option value="30" selected>30 segundos</option>
+            </select>
+          </label>
+        </div>
+        <ol class="ativ__lista" id="ativ-lista" aria-label="Passos da escovação"></ol>
+      </div>
+
+      <div class="ativ-fim" id="ativ-fim" hidden>
+        <figure class="fig fig--peq">
+          <span class="credito">Imagem gerada por IA</span>
+          <img src="img/dente-feliz.svg" width="520" height="360" alt="Dente sorridente e limpo, com dois pequenos brilhos.">
+        </figure>
+        <div>
+          <h2 tabindex="-1" id="t-ativ-fim">Acabou! Você escovou os dentes.</h2>
+          <p><strong>Agora:</strong> guardar a escova no copo.</p>
+          <p>A atividade de hoje terminou. Ela não começa de novo sozinha.</p>
+          <div class="botoes">
+            <a class="btn btn--prim" href="#/inicio">Voltar ao início</a>
+            <button type="button" class="btn btn--sec" id="ativ-refazer">Fazer de novo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AJUDA ===================== -->
+    <section class="vista" data-rota="ajuda" aria-labelledby="t-ajuda" hidden>
+      <h1 id="t-ajuda" tabindex="-1">Ajuda por mensagem</h1>
+      <p class="lead">Você fala com uma pessoa da recepção, por escrito. Nenhum atendimento exige ligação ou menu de voz.</p>
+      <div class="grade-2">
+        <section class="cartao" aria-labelledby="t-chat">
+          <h2 id="t-chat" class="cartao__tit">Conversa com a recepção</h2>
+          <p class="dica">Atendimento de segunda a sexta, das 8h às 18h. Respondemos em até 10 minutos.</p>
+          <div class="chat">
+            <div class="chat__log" role="log" aria-label="Conversa com a recepção" aria-live="polite" id="ajuda-log" tabindex="0"></div>
+            <p class="chat__digitando" id="ajuda-digitando"></p>
+            <div class="chat__rapidas" role="group" aria-label="Assuntos comuns" id="ajuda-rapidas">
+              <button type="button" class="btn btn--sec btn--peq" data-msg="Quero confirmar minha consulta.">Confirmar consulta</button>
+              <button type="button" class="btn btn--sec btn--peq" data-msg="Quero cancelar minha consulta.">Cancelar consulta</button>
+              <button type="button" class="btn btn--sec btn--peq" data-msg="Qual é o endereço da clínica?">Endereço</button>
+            </div>
+            <form class="chat__form" id="ajuda-form">
+              <label for="ajuda-msg">Sua mensagem</label>
+              <div class="chat__linha">
+                <input id="ajuda-msg" type="text" autocomplete="off" placeholder="Exemplo: posso levar meus fones?" aria-describedby="erro-ajuda-msg">
+                <button class="btn btn--prim" type="submit">Enviar</button>
+              </div>
+              <p class="erro" id="erro-ajuda-msg" hidden></p>
+            </form>
+          </div>
+        </section>
+        <div class="pilha">
+          <figure class="fig">
+            <span class="credito">Imagem gerada por IA</span>
+            <img src="img/ajuda-texto.svg" width="800" height="480" alt="Atendente com fone de ouvido e uma paciente conversando por mensagens de texto em um celular, sem ligação telefônica.">
+          </figure>
+          <section class="cartao" aria-labelledby="t-faq">
+            <h2 id="t-faq" class="cartao__tit">Perguntas frequentes</h2>
+            <div class="acordeao" id="faq"></div>
+          </section>
+          <section class="cartao" aria-labelledby="t-outros">
+            <h2 id="t-outros" class="cartao__tit">Outros jeitos de falar com a clínica</h2>
+            <ul>
+              <li>E-mail: <a href="mailto:contato@clinicasorriso.exemplo">contato@clinicasorriso.exemplo</a> (endereço fictício)</li>
+              <li>WhatsApp, só mensagem escrita: (16) 99876-5432 (número fictício)</li>
+              <li>Pessoalmente: Rua Episcopal, 120 – São Carlos (SP)</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NOVIDADES ===================== -->
+    <section class="vista" data-rota="novidades" aria-labelledby="t-novid" hidden>
+      <h1 id="t-novid" tabindex="-1">Novidades do app</h1>
+      <div class="aviso aviso--info">
+        <h2 class="aviso__tit">Mudança prevista para 1º de dezembro de 2026</h2>
+        <p>Avisamos com antecedência para você se preparar. <strong>Nada muda sem você aceitar.</strong></p>
+      </div>
+      <div class="grade-2">
+        <figure class="fig">
+          <span class="credito">Imagem gerada por IA</span>
+          <img src="img/visual-atual.svg" width="480" height="390" alt="Miniatura do visual atual: três botões empilhados e, embaixo, a barra Início, Consultas, Ajuda e Ajustes.">
+          <figcaption><strong>Como é hoje.</strong></figcaption>
+        </figure>
+        <figure class="fig">
+          <span class="credito">Imagem gerada por IA</span>
+          <img src="img/visual-novo.svg" width="480" height="390" alt="Miniatura do novo visual: os mesmos três botões, agora mais altos e com ícones, um lembrete de escovação e a mesma barra de navegação embaixo.">
+          <figcaption><strong>Como vai ficar.</strong></figcaption>
+        </figure>
+      </div>
+      <div class="grade-2">
+        <section class="cartao" aria-labelledby="t-muda">
+          <h2 id="t-muda" class="cartao__tit">O que muda</h2>
+          <ul class="lista-check">
+            <li>Os três botões principais ficam mais altos e ganham ícones.</li>
+            <li>Aparece um lembrete de escovação no horário que você escolher.</li>
+          </ul>
+        </section>
+        <section class="cartao" aria-labelledby="t-nao-muda">
+          <h2 id="t-nao-muda" class="cartao__tit">O que não muda</h2>
+          <ul class="lista-check">
+            <li>O menu continua no mesmo lugar, com os mesmos nomes.</li>
+            <li>“Agendar consulta” continua sendo o primeiro botão.</li>
+            <li>Suas preferências (modo calmo, tamanho do texto, contraste) continuam iguais.</li>
+          </ul>
+        </section>
+      </div>
+      <form class="cartao" id="form-visual">
+        <fieldset class="campo-grupo">
+          <legend>O que você quer fazer em 1º de dezembro?</legend>
+          <div class="opcoes">
+            <label class="opcao"><input type="radio" name="visual" value="manter"><span><strong>Manter o visual atual</strong><small>Você pode trocar depois, em Preferências.</small></span></label>
+            <label class="opcao"><input type="radio" name="visual" value="novo"><span><strong>Usar o novo visual a partir de 1º de dezembro</strong></span></label>
+            <label class="opcao"><input type="radio" name="visual" value="lembrar"><span><strong>Perguntar de novo no dia</strong></span></label>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn btn--prim">Salvar minha escolha</button>
+        <p class="salvo" id="visual-salvo" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- ===================== PREFERÊNCIAS ===================== -->
+    <section class="vista" data-rota="ajustes" aria-labelledby="t-ajustes" hidden>
+      <h1 id="t-ajustes" tabindex="-1">Preferências</h1>
+      <p class="lead">Ajuste o app do seu jeito. As mudanças valem na hora e ficam salvas neste aparelho.</p>
+      <div class="grade-2">
+        <section class="cartao" aria-labelledby="t-sens">
+          <h2 id="t-sens" class="cartao__tit">Sons e movimento</h2>
+          <div class="pilha pilha--peq">
+            <button type="button" class="interruptor" role="switch" aria-checked="true" id="sw-calmo"><span><strong>Modo calmo</strong><small>Nada se move sozinho: sem animações nem transições.</small></span><span class="sw" aria-hidden="true"></span></button>
+            <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-sons"><span><strong>Sons do app</strong><small>Um som baixo ao terminar cada passo da escovação. Vem desligado.</small></span><span class="sw" aria-hidden="true"></span></button>
+            <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-lembretes"><span><strong>Lembretes de consulta</strong><small>Só por escrito, nos canais que você escolheu. Nunca por ligação.</small></span><span class="sw" aria-hidden="true"></span></button>
+          </div>
+        </section>
+        <section class="cartao" aria-labelledby="t-visual">
+          <h2 id="t-visual" class="cartao__tit">Leitura e cores</h2>
+          <fieldset class="campo-grupo">
+            <legend>Cores da tela</legend>
+            <div class="opcoes opcoes--linha">
+              <label class="opcao"><input type="radio" name="tema" value="claro"><span>Claro (bege)</span></label>
+              <label class="opcao"><input type="radio" name="tema" value="escuro"><span>Escuro</span></label>
+              <label class="opcao"><input type="radio" name="tema" value="contraste"><span>Alto contraste</span></label>
+            </div>
+          </fieldset>
+          <div class="pilha pilha--peq">
+            <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-espaco"><span><strong>Mais espaço entre linhas e letras</strong><small>Ajuda a não perder a linha na leitura.</small></span><span class="sw" aria-hidden="true"></span></button>
+          </div>
+          <p>Tamanho do texto: use os botões <strong>A−</strong>, <strong>A</strong> e <strong>A+</strong> no topo da página (de 87,5% a 200%).</p>
+        </section>
+        <section class="cartao" aria-labelledby="t-bloq">
+          <h2 id="t-bloq" class="cartao__tit">Modo bloqueado (para crianças)</h2>
+          <p>Deixa abertas só as telas “Como é a consulta” e “Escovar os dentes”. Para sair, um adulto digita um PIN de 4 números.</p>
+          <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-bloqueio"><span><strong>Modo bloqueado</strong><small id="bloq-estado">Desligado</small></span><span class="sw" aria-hidden="true"></span></button>
+        </section>
+        <section class="cartao" aria-labelledby="t-restaurar">
+          <h2 id="t-restaurar" class="cartao__tit">Voltar ao começo</h2>
+          <p>Volta todas as preferências ao padrão. Suas consultas não são apagadas.</p>
+          <button type="button" class="btn btn--sec" id="btn-restaurar">Restaurar preferências padrão</button>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== ENTRAR (sem senha) ===================== -->
+    <section class="vista" data-rota="entrar" aria-labelledby="t-entrar" hidden>
+      <h1 id="t-entrar" tabindex="-1">Entrar sem senha</h1>
+      <div class="grade-2">
+        <div>
+          <p class="lead">Você não precisa decorar senha nem resolver CAPTCHA. Mandamos um link para o seu e-mail; ao abrir o link, você entra.</p>
+          <form id="form-entrar" class="cartao" novalidate>
+            <div class="campo">
+              <label for="entrar-email">Seu e-mail</label>
+              <input id="entrar-email" type="email" autocomplete="email" placeholder="exemplo@email.com" aria-describedby="erro-entrar-email">
+              <p class="erro" id="erro-entrar-email" hidden></p>
+            </div>
+            <button type="submit" class="btn btn--prim">Enviar link de acesso</button>
+          </form>
+          <div class="aviso aviso--ok" id="entrar-enviado" hidden>
+            <h2 class="aviso__tit" tabindex="-1" id="t-entrar-ok">Link enviado</h2>
+            <p id="entrar-msg"></p>
+            <p>O link vale por 24 horas. Se não chegar em 5 minutos, olhe a caixa de spam ou peça outro.</p>
+            <button type="button" class="btn btn--prim" id="btn-abrir-link">Abrir o link do e-mail (simulação)</button>
+          </div>
+          <div class="aviso aviso--ok" id="entrar-logado" hidden>
+            <p id="logado-msg"></p>
+            <button type="button" class="btn btn--sec" id="btn-sair">Sair da conta</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ACESSIBILIDADE ===================== -->
+    <section class="vista vista--texto" data-rota="acessibilidade" aria-labelledby="t-acess" hidden>
+      <h1 id="t-acess" tabindex="-1">Acessibilidade deste site</h1>
+      <p class="lead">Este site foi feito para pessoas autistas e seus responsáveis, e também para pessoas idosas. Ele segue a WCAG 2.2 (nível AA), a ABNT NBR 17225:2025, as recomendações do W3C para acessibilidade cognitiva (COGA) e as diretrizes AASPIRE para usuários autistas.</p>
+
+      <h2>Recursos disponíveis</h2>
+      <ul class="lista-check">
+        <li><strong>Tamanho do texto</strong> de 87,5% a 200% pelos botões A−, A e A+, sem depender do zoom do navegador.</li>
+        <li><strong>Alto contraste</strong> (fundo preto, texto branco e amarelo) e <strong>tema escuro</strong>.</li>
+        <li><strong>Modo calmo</strong>, ligado por padrão: nada se move sozinho, sem sons, sem janelas que abrem sem pedido.</li>
+        <li><strong>VLibras</strong>: tradução do conteúdo para Libras pelo botão “Libras” no topo ou pelo ícone na lateral.</li>
+        <li><strong>Mais espaço</strong> entre linhas, letras e palavras.</li>
+        <li><strong>Ouvir</strong> textos da história social, só quando a pessoa toca no botão.</li>
+        <li><strong>Modo bloqueado</strong> com PIN para crianças.</li>
+      </ul>
+
+      <h2>Atalhos de teclado</h2>
+      <div class="tabela-rolagem">
+        <table>
+          <caption>Teclas que funcionam em todo o site</caption>
+          <thead><tr><th scope="col">Tecla</th><th scope="col">O que faz</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Alt</kbd> + <kbd>1</kbd></td><td>Vai para o conteúdo principal</td></tr>
+            <tr><td><kbd>Alt</kbd> + <kbd>2</kbd></td><td>Vai para o menu</td></tr>
+            <tr><td><kbd>Alt</kbd> + <kbd>3</kbd></td><td>Vai para o rodapé</td></tr>
+            <tr><td><kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd></td><td>Avança / volta entre links, botões e campos</td></tr>
+            <tr><td><kbd>Enter</kbd> ou <kbd>Espaço</kbd></td><td>Ativa o botão ou a opção em foco</td></tr>
+            <tr><td><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd></td><td>Mudam a opção dentro de grupos (dias, horários, abas, perfil, canal)</td></tr>
+            <tr><td><kbd>Esc</kbd></td><td>Fecha o submenu “Mais opções” e as janelas de diálogo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Onde usamos WAI-ARIA e para quê</h2>
+      <div class="tabela-rolagem">
+        <table>
+          <caption>Elementos com WAI-ARIA na interface</caption>
+          <thead><tr><th scope="col">Elemento</th><th scope="col">Papel e atributos</th><th scope="col">Função</th></tr></thead>
+          <tbody>
+            <tr><td>Interruptores (Modo calmo, câmera, sons, modo bloqueado)</td><td><code>role="switch"</code>, <code>aria-checked</code></td><td>O leitor de tela anuncia “interruptor, ligado/desligado”, e não só “botão”.</td></tr>
+            <tr><td>Escolha de dia, horário, perfil e canal da teleconsulta</td><td><code>role="radiogroup"</code>, <code>role="radio"</code>, <code>aria-checked</code>, <code>aria-labelledby</code>, <code>aria-describedby</code></td><td>Grupo de opções customizado, navegável com as setas e com uma única parada de Tab.</td></tr>
+            <tr><td>Abas de “Como é a consulta” e “Minhas consultas”</td><td><code>role="tablist"</code>, <code>role="tab"</code>, <code>role="tabpanel"</code>, <code>aria-selected</code>, <code>aria-controls</code></td><td>Mostra um formato por vez e informa qual aba está ativa.</td></tr>
+            <tr><td>Submenu “Mais opções”, perguntas frequentes e resumo de consultas anteriores</td><td><code>aria-expanded</code>, <code>aria-controls</code></td><td>Diz se o conteúdo está aberto ou fechado.</td></tr>
+            <tr><td>Menu, trilha e etapas do agendamento</td><td><code>aria-current="page"</code> e <code>aria-current="step"</code></td><td>Informa a página atual e a etapa atual.</td></tr>
+            <tr><td>Conversas (ajuda e teleconsulta)</td><td><code>role="log"</code>, <code>aria-live="polite"</code></td><td>Novas mensagens são lidas sem tirar o foco do campo de texto.</td></tr>
+            <tr><td>Temporizador da escovação e tempo de tela</td><td><code>role="timer"</code>, <code>role="progressbar"</code>, <code>aria-valuenow</code>, <code>aria-valuetext</code></td><td>Mostra o tempo sem anunciar cada segundo (evita interrupções).</td></tr>
+            <tr><td>Campos de formulário</td><td><code>aria-invalid</code>, <code>aria-describedby</code>, <code>aria-required</code></td><td>Liga cada campo à sua dica e à mensagem de erro que explica como corrigir.</td></tr>
+            <tr><td>Resumo de erros e avisos</td><td><code>role="alert"</code>, <code>role="status"</code></td><td>Avisa o resultado de uma ação sem mudar de página.</td></tr>
+            <tr><td>Botão Alto contraste e Legendas do vídeo</td><td><code>aria-pressed</code></td><td>Botão de alternância: informa se está pressionado.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Para quem foi pensado e em que nível pode ser usado</h2>
+      <div class="tabela-rolagem">
+        <table>
+          <caption>Declaração de uso pelos públicos-alvo</caption>
+          <thead><tr><th scope="col">Público</th><th scope="col">Desafios considerados</th><th scope="col">Nível de uso esperado</th></tr></thead>
+          <tbody>
+            <tr><td>Marina, 23 anos, autista nível 1 de suporte</td><td>Ansiedade com ligações e câmera, sobrecarga com telas cheias, linguagem ambígua, formulários com tempo-limite e CAPTCHA</td><td><strong>Uso autônomo</strong> de todo o caminho de agendamento, teleconsulta por mensagens e ajuda por texto.</td></tr>
+            <tr><td>Lucas, 9 anos, autista nível 2 de suporte, com a mãe</td><td>Hipersensibilidade auditiva e visual, necessidade de rotina e previsibilidade, leitura em desenvolvimento</td><td><strong>Uso com apoio</strong> do responsável para agendar; <strong>uso autônomo</strong> da história social e da escovação no modo bloqueado.</td></tr>
+            <tr><td>Pessoas idosas</td><td>Visão reduzida, menor precisão no toque, pouca familiaridade com padrões digitais, dificuldade com tempo-limite e senhas</td><td><strong>Uso autônomo</strong> com texto ampliado até 200%, alvos de toque de 48 px, sem senha e sem tempo-limite.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Limitações conhecidas</h2>
+      <ul>
+        <li>O VLibras depende do serviço do Governo Federal; sem internet, o botão “Libras” avisa que não carregou.</li>
+        <li>O vídeo não tem áudio por escolha de projeto (hipersensibilidade auditiva). A transcrição completa, com a descrição das imagens, substitui a audiodescrição.</li>
+        <li>A clínica, os profissionais, os telefones e os e-mails são fictícios. As conversas são simuladas.</li>
+      </ul>
+      <p>Encontrou uma barreira? <a href="#/ajuda">Conte para nós por mensagem</a>.</p>
+    </section>
+
+    <!-- ===================== CRÉDITOS ===================== -->
+    <section class="vista vista--texto" data-rota="creditos" aria-labelledby="t-cred" hidden>
+      <h1 id="t-cred" tabindex="-1">Créditos das imagens e do vídeo</h1>
+      <p class="lead">Todas as imagens e o vídeo deste site são ilustrações originais geradas por IA (Claude Opus 5.5, da Anthropic), escritas como código vetorial SVG em novembro de 2026, seguindo a paleta do protótipo no Figma. Nenhuma imagem se repete. O canto superior direito de cada imagem também indica a origem.</p>
+      <div class="tabela-rolagem">
+        <table>
+          <caption>Lista de imagens e onde aparecem</caption>
+          <thead><tr><th scope="col">Arquivo</th><th scope="col">Onde aparece</th><th scope="col">Origem</th></tr></thead>
+          <tbody id="tabela-creditos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== MAPA DO SITE ===================== -->
+    <section class="vista vista--texto" data-rota="mapa" aria-labelledby="t-mapa" hidden>
+      <h1 id="t-mapa" tabindex="-1">Mapa do site</h1>
+      <p class="lead">Todas as páginas, organizadas por assunto.</p>
+      <ul class="mapa">
+        <li><a href="#/inicio">Início</a></li>
+        <li>Consultas
+          <ul>
+            <li><a href="#/agendar">Agendar consulta</a> (5 etapas)</li>
+            <li><a href="#/consultas">Minhas consultas</a></li>
+            <li><a href="#/teleconsulta">Teleconsulta</a></li>
+          </ul>
+        </li>
+        <li>Preparação
+          <ul>
+            <li><a href="#/como-e">Como é a consulta</a> (figuras, vídeo, sala e kit sensorial)</li>
+            <li><a href="#/atividades">Escovar os dentes</a></li>
+          </ul>
+        </li>
+        <li>Conta e ajuda
+          <ul>
+            <li><a href="#/entrar">Entrar sem senha</a></li>
+            <li><a href="#/ajuda">Ajuda por mensagem</a></li>
+            <li><a href="#/ajustes">Preferências</a></li>
+            <li><a href="#/novidades">Novidades do app</a></li>
+          </ul>
+        </li>
+        <li>Sobre o site
+          <ul>
+            <li><a href="#/acessibilidade">Acessibilidade</a></li>
+            <li><a href="#/creditos">Créditos das imagens</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== 404 ===================== -->
+    <section class="vista" data-rota="nao-encontrada" aria-labelledby="t-404" hidden>
+      <h1 id="t-404" tabindex="-1">Não encontramos esta página</h1>
+      <p class="lead">O endereço pode ter sido digitado errado. Você pode <a href="#/inicio">voltar ao início</a> ou abrir o <a href="#/mapa">mapa do site</a>.</p>
+    </section>
+  </div>
+</main>
+
+<!-- ============================= RODAPÉ ============================= -->
+<footer id="rodape" class="rodape" tabindex="-1">
+  <div class="largura rodape__grade">
+    <section aria-labelledby="r-clinica">
+      <h2 id="r-clinica">Clínica Sorriso</h2>
+      <p>Rua Episcopal, 120 – Centro, São Carlos (SP)<br>Segunda a sexta, das 8h às 18h</p>
+      <p>Atendimento só por mensagem: <a href="#/ajuda">abrir a conversa</a></p>
+    </section>
+    <nav aria-labelledby="r-nav">
+      <h2 id="r-nav">Páginas</h2>
+      <ul>
+        <li><a href="#/agendar">Agendar consulta</a></li>
+        <li><a href="#/como-e">Como é a consulta</a></li>
+        <li><a href="#/acessibilidade">Acessibilidade</a></li>
+        <li><a href="#/creditos">Créditos das imagens</a></li>
+        <li><a href="#/mapa">Mapa do site</a></li>
+      </ul>
+    </nav>
+    <section aria-labelledby="r-sobre">
+      <h2 id="r-sobre">Sobre este projeto</h2>
+      <p>Trabalho da disciplina SCC0580 – Acessibilidade em Sistemas Computacionais (ICMC/USP, 2026). Feito em HTML, CSS e JavaScript, sem bibliotecas.</p>
+      <p><strong>Imagens e vídeo:</strong> ilustrações geradas por IA (Claude Opus 5.5, Anthropic). <a href="#/creditos">Ver a lista completa</a>.</p>
+    </section>
+  </div>
+  <p class="largura rodape__fim">A clínica, os profissionais, os contatos e as conversas são fictícios, criados para fins acadêmicos.</p>
+</footer>
+
+<!-- Avisos para leitores de tela -->
+<div class="sr-only" role="status" aria-live="polite" id="aviso-sr"></div>
+
+<!-- Diálogos -->
+<dialog class="dialogo" id="dlg-cancelar" aria-labelledby="dlg-cancelar-tit" aria-describedby="dlg-cancelar-desc">
+  <h2 id="dlg-cancelar-tit">Cancelar esta consulta?</h2>
+  <p id="dlg-cancelar-desc"></p>
+  <div class="botoes">
+    <button type="button" class="btn btn--sec" data-fechar>Não, manter a consulta</button>
+    <button type="button" class="btn btn--perigo" id="dlg-cancelar-sim">Sim, cancelar a consulta</button>
+  </div>
+</dialog>
+
+<dialog class="dialogo" id="dlg-pin" aria-labelledby="dlg-pin-tit" aria-describedby="dlg-pin-desc">
+  <form method="dialog" id="form-pin" novalidate>
+    <h2 id="dlg-pin-tit">Digite o PIN</h2>
+    <p id="dlg-pin-desc"></p>
+    <div class="campo">
+      <label for="pin">PIN de 4 números</label>
+      <input id="pin" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••" aria-describedby="erro-pin">
+      <p class="erro" id="erro-pin" hidden></p>
+    </div>
+    <div class="botoes">
+      <button type="button" class="btn btn--sec" data-fechar>Cancelar</button>
+      <button type="submit" class="btn btn--prim" id="pin-ok">Confirmar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="dialogo" id="dlg-restaurar" aria-labelledby="dlg-restaurar-tit">
+  <h2 id="dlg-restaurar-tit">Restaurar as preferências padrão?</h2>
+  <p>O texto volta a 100%, as cores voltam ao bege, o modo calmo fica ligado e os sons ficam desligados.</p>
+  <div class="botoes">
+    <button type="button" class="btn btn--sec" data-fechar>Não, manter como está</button>
+    <button type="button" class="btn btn--prim" id="dlg-restaurar-sim">Sim, restaurar</button>
+  </div>
+</dialog>
+
+<!-- VLibras (Governo Federal) -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
