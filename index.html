@@ -7,9 +7,6 @@
 <meta name="description" content="Clínica Sorriso: agende consultas odontológicas, prepare-se com histórias sociais e fale com a clínica só por mensagem. Projeto acessível para pessoas autistas.">
 <meta name="theme-color" content="#3F6E73">
 <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
 <script>
 /* Aplica as preferências salvas antes de desenhar a página (evita "piscar" de tema/tamanho). */
@@ -19,6 +16,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
 </script>
 </head>
 <body>
+<noscript><p class="largura aviso">Este protótipo precisa de JavaScript para os agendamentos e as preferências. Ative JavaScript para continuar.</p></noscript>
 
 <!-- Ícones (decorativos, sempre acompanhados de texto) -->
 <svg class="sprite" aria-hidden="true" focusable="false">
@@ -131,9 +129,11 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
 <!-- ============================= CONTEÚDO ============================= -->
 <main id="conteudo" tabindex="-1">
   <div class="largura">
+    <p class="demo-nota"><strong>Protótipo para estudo.</strong> Consultas e conversas são simuladas; nenhum e-mail é enviado. Use dados fictícios.</p>
     <nav class="trilha" aria-label="Você está aqui">
       <ol id="trilha-lista"></ol>
     </nav>
+    <p class="mensagem-geral" id="storage-aviso" role="status" hidden></p>
     <p class="mensagem-geral" id="mensagem-geral" role="status" aria-live="polite"></p>
 
     <!-- ===================== INÍCIO ===================== -->
@@ -151,7 +151,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
           <ul class="acoes" aria-label="Ações principais">
             <li class="txt-marina"><a class="acao acao--prim" href="#/agendar"><svg class="ico" aria-hidden="true"><use href="#i-agendar"/></svg><span><strong>Agendar consulta</strong><small>5 etapas, sem limite de tempo</small></span></a></li>
             <li class="txt-marina"><a class="acao" href="#/consultas"><svg class="ico" aria-hidden="true"><use href="#i-consultas"/></svg><span><strong>Minhas consultas</strong><small>Ver, confirmar, remarcar ou cancelar</small></span></a></li>
-            <li class="txt-marina"><a class="acao" href="#/como-e"><svg class="ico" aria-hidden="true"><use href="#i-historia"/></svg><span><strong>Como é a consulta</strong><small>Passo a passo com imagens e vídeo sem som</small></span></a></li>
+            <li class="txt-marina"><a class="acao" href="#/como-e"><svg class="ico" aria-hidden="true"><use href="#i-historia"/></svg><span><strong>Como é a consulta</strong><small>Passo a passo com imagens e som opcional</small></span></a></li>
             <li class="txt-lucas"><a class="acao acao--prim" href="#/como-e"><svg class="ico" aria-hidden="true"><use href="#i-historia"/></svg><span><strong>Ver como é a consulta</strong><small>4 passos com figuras</small></span></a></li>
             <li class="txt-lucas"><a class="acao" href="#/atividades"><svg class="ico" aria-hidden="true"><use href="#i-escova"/></svg><span><strong>Escovar os dentes</strong><small>5 passos. Depois acaba.</small></span></a></li>
             <li class="txt-lucas"><a class="acao" href="#/consultas"><svg class="ico" aria-hidden="true"><use href="#i-consultas"/></svg><span><strong>Minha próxima consulta</strong><small>Dia, hora e com quem</small></span></a></li>
@@ -167,11 +167,11 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
             <p class="dica" id="perfil-dica">Use as setas do teclado para trocar. A tela se adapta: frases mais curtas e figuras para o Lucas.</p>
             <div class="perfis" role="radiogroup" aria-labelledby="t-perfil" aria-describedby="perfil-dica" data-radiogroup="perfil">
               <div role="radio" aria-checked="true" tabindex="0" data-valor="marina" class="perfil">
-                <img src="img/avatar-marina.svg" alt="Avatar da Marina: mulher de cabelo escuro e longo, blusa verde" width="64" height="64">
+                <img src="img/avatar-marina.jpg" alt="Avatar da Marina: mulher de cabelo escuro e longo, blusa verde" width="64" height="64">
                 <span><strong>Marina</strong><small>23 anos · usa sozinha</small></span>
               </div>
               <div role="radio" aria-checked="false" tabindex="-1" data-valor="lucas" class="perfil">
-                <img src="img/avatar-lucas.svg" alt="Avatar do Lucas: menino de cabelo curto e camiseta azul-petróleo" width="64" height="64">
+                <img src="img/avatar-lucas.jpg" alt="Avatar do Lucas: menino de cabelo curto e camiseta azul-petróleo" width="64" height="64">
                 <span><strong>Lucas, com a mãe</strong><small>9 anos · figuras e frases curtas</small></span>
               </div>
             </div>
@@ -181,14 +181,14 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
         <div class="pilha">
           <figure class="fig">
             <span class="credito">Imagem gerada por IA</span>
-            <img src="img/recepcao.svg" width="960" height="560" alt="Recepção da Clínica Sorriso: recepcionista acenando atrás do balcão, três cadeiras vazias, uma planta e janela com luz suave.">
+            <img src="img/recepcao.jpg" width="960" height="560" alt="Recepção da Clínica Sorriso: recepcionista acenando atrás do balcão, três cadeiras vazias, uma planta e janela com luz suave.">
             <figcaption>A recepção é silenciosa e tem luz natural. Se preferir, você pode esperar do lado de fora: avisamos por mensagem quando for sua vez.</figcaption>
           </figure>
-          <aside class="aviso aviso--info" aria-labelledby="t-novid-curto">
+          <section class="aviso aviso--info" aria-labelledby="t-novid-curto">
             <h2 id="t-novid-curto" class="aviso__tit">Mudança no visual prevista para 1º de dezembro</h2>
             <p>O menu continua no mesmo lugar. Nada muda sem você aceitar.</p>
             <p><a href="#/novidades">Ver a prévia da mudança e escolher</a></p>
-          </aside>
+          </section>
         </div>
       </div>
     </section>
@@ -272,15 +272,15 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
             <legend>Com qual profissional? <span class="obrig">(obrigatório)</span></legend>
             <div class="profs">
               <div class="prof">
-                <img src="img/dra-ana.svg" width="320" height="320" alt="Retrato ilustrado da Dra. Ana Lima: mulher de óculos, cabelo castanho preso e jaleco branco.">
+                <img src="img/dra-ana.jpg" width="320" height="320" alt="Retrato fictício da Dra. Ana Lima, de cabelo escuro curto e jaleco branco.">
                 <label class="opcao opcao--prof"><input type="radio" name="prof" value="ana"><span><strong>Dra. Ana Lima</strong><small>Clínica geral · atende adultos e adolescentes autistas há 8 anos · avisa antes de cada etapa</small></span></label>
               </div>
               <div class="prof">
-                <img src="img/dr-rafael.svg" width="320" height="320" alt="Retrato ilustrado do Dr. Rafael Souza: homem negro de cabelo cacheado, barba curta e jaleco branco.">
+                <img src="img/dr-rafael.jpg" width="320" height="320" alt="Retrato ilustrado do Dr. Rafael Souza: homem negro de cabelo cacheado, barba curta e jaleco branco.">
                 <label class="opcao opcao--prof"><input type="radio" name="prof" value="rafael"><span><strong>Dr. Rafael Souza</strong><small>Odontopediatria · crianças até 14 anos · deixa a criança tocar nos instrumentos antes</small></span></label>
               </div>
               <div class="prof">
-                <img src="img/dra-helena.svg" width="320" height="320" alt="Retrato ilustrado da Dra. Helena Prado: mulher de cabelo longo e claro e jaleco branco.">
+                <img src="img/dra-helena.jpg" width="320" height="320" alt="Retrato fictício da Dra. Helena Prado, de cabelo castanho preso e jaleco branco.">
                 <label class="opcao opcao--prof"><input type="radio" name="prof" value="helena"><span><strong>Dra. Helena Prado</strong><small>Ortodontia (aparelhos) · atende em horários de pouco movimento</small></span></label>
               </div>
             </div>
@@ -370,8 +370,8 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
             <p class="erro" id="erro-avisos" hidden></p>
           </fieldset>
           <div class="campo">
-            <label class="opcao opcao--check opcao--solta" id="g-lgpd"><input type="checkbox" id="lgpd" name="lgpd" aria-describedby="lgpd-dica erro-lgpd"><span>Concordo que a Clínica Sorriso use estes dados só para marcar e lembrar a consulta.</span></label>
-            <p class="dica" id="lgpd-dica">Seus dados não são vendidos nem usados para propaganda (Lei Geral de Proteção de Dados).</p>
+            <label class="opcao opcao--check opcao--solta" id="g-lgpd"><input type="checkbox" id="lgpd" name="lgpd" aria-describedby="lgpd-dica erro-lgpd"><span>Entendo que os dados fictícios ficam salvos neste navegador para simular a consulta.</span></label>
+            <p class="dica" id="lgpd-dica">Este protótipo não envia o formulário à clínica. Para apagar os dados salvos, use Preferências → Apagar dados de demonstração.</p>
             <p class="erro" id="erro-lgpd" hidden></p>
           </div>
         </div>
@@ -385,7 +385,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
             <h3 class="aviso__tit">O que acontece quando você tocar em “Confirmar agendamento”</h3>
             <ol>
               <li>A consulta fica marcada e aparece em “Minhas consultas”.</li>
-              <li>Você recebe um resumo pelos canais que escolheu.</li>
+              <li>Nesta demonstração, o resumo aparece na tela. Nenhuma mensagem é enviada.</li>
               <li>Você pode remarcar ou cancelar até 24 horas antes, sem custo e sem precisar ligar.</li>
             </ol>
           </div>
@@ -404,7 +404,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
       <div class="confirmado">
         <figure class="fig fig--peq">
           <span class="credito">Imagem gerada por IA</span>
-          <img src="img/confirmado.svg" width="520" height="360" alt="Calendário com um grande sinal verde de confirmado.">
+          <img src="img/confirmado.jpg" width="520" height="360" alt="Calendário com um grande sinal verde de confirmado.">
         </figure>
         <div>
           <h1 id="t-confirmado" tabindex="-1">Pronto! Sua consulta está marcada</h1>
@@ -430,7 +430,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
         <div class="grade-2 grade-2--meio">
           <figure class="fig">
             <span class="credito">Imagem gerada por IA</span>
-            <img src="img/fachada.svg" width="960" height="520" alt="Fachada térrea da Clínica Sorriso, número 120, com porta de vidro, rampa com corrimão, placa de acessibilidade e uma árvore na calçada.">
+            <img src="img/fachada.jpg" width="960" height="520" alt="Fachada térrea da Clínica Sorriso, número 120, com porta de vidro, rampa com corrimão, placa de acessibilidade e uma árvore na calçada.">
           </figure>
           <div>
             <p><strong>Endereço:</strong> Rua Episcopal, 120 – Centro, São Carlos (SP). Prédio térreo, com rampa.</p>
@@ -475,7 +475,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
           <div class="historia" id="historia">
             <p class="historia__cont" id="historia-cont" aria-live="polite">Passo 1 de 4</p>
             <div class="historia__palco">
-              <img id="historia-img" src="img/picto-1-chegar.svg" width="240" height="240" alt="">
+              <img id="historia-img" src="img/picto-1-chegar.jpg" width="240" height="240" alt="">
               <div>
                 <h2 id="historia-tit" class="historia__tit"></h2>
                 <p id="historia-txt" class="historia__txt"></p>
@@ -500,9 +500,10 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
               Seu navegador não mostra vídeos. Leia a transcrição abaixo.
             </video>
           </div>
-          <p id="video-desc" class="dica">O vídeo não começa sozinho e não tem som. Ele dura 32 segundos. As legendas já vêm ligadas. Use os controles do vídeo para tocar, pausar, voltar e ver em tela cheia.</p>
+          <p id="video-desc" class="dica">O vídeo não começa sozinho e inicia com o som desligado. Ele dura 63 segundos. Para ouvir a descrição das cenas, ative a narração. As legendas já vêm ligadas. Use os controles do vídeo para tocar, pausar, voltar e ver em tela cheia.</p>
           <div class="video-controles" role="group" aria-label="Controles extras do vídeo">
             <button type="button" class="btn btn--sec btn--peq" id="vid-play">Tocar o vídeo</button>
+            <button type="button" class="btn btn--sec btn--peq" id="vid-narracao" aria-pressed="false">Narração desligada</button>
             <button type="button" class="btn btn--sec btn--peq" id="vid-voltar">Voltar 5 segundos</button>
             <button type="button" class="btn btn--sec btn--peq" id="vid-legenda" aria-pressed="true">Legendas ligadas</button>
             <label class="vel">Velocidade
@@ -512,23 +513,14 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
               </select>
             </label>
           </div>
-          <details class="transcricao">
-            <summary>Ler a transcrição completa do vídeo, com a descrição das imagens</summary>
-            <ol>
-              <li><strong>Abertura (0 a 4 s).</strong> Um dente sorridente e o título “Como é uma consulta no dentista. São 4 passos.”</li>
-              <li><strong>Passo 1 (4 a 11 s).</strong> Imagem: Lucas e a mãe em pé na recepção, ao lado de três cadeiras; um relógio na parede. Texto: “Você chega com sua mãe e fala seu nome na recepção. Depois, você espera sentado. A espera dura cerca de 10 minutos.”</li>
-              <li><strong>Passo 2 (11 a 18 s).</strong> Imagem: Lucas sentado na cadeira do dentista; a Dra. Ana acena e um balão diz “Vou deitar a cadeira”. Texto: “Você senta na cadeira. A Dra. Ana avisa antes de deitar a cadeira um pouco para trás.”</li>
-              <li><strong>Passo 3 (18 a 25 s).</strong> Imagem: uma luz acesa sobre Lucas, que usa óculos escuros; um balão diz “A luz é forte e não esquenta”. Texto: “Uma luz forte acende em cima de você. Ela não esquenta. Você pode usar óculos escuros e fones abafadores.”</li>
-              <li><strong>Passo 4 (25 a 32 s).</strong> Imagem: Lucas acena ao lado da mãe, perto de uma casa; um balão diz “Acabou!”. Texto: “A Dra. Ana diz: acabou! Você levanta e vai para casa com sua mãe.”</li>
-            </ol>
-          </details>
+          <details class="transcricao"><summary>Ler a transcrição completa do vídeo, com a descrição das imagens</summary><ol><li><strong>0 a 17 segundos.</strong> Passo 1. Chegar e esperar. Lucas, um menino de cabelo escuro e camiseta verde, chega à recepção com a mãe. A recepcionista os recebe. Você pode falar seu nome ou mostrá-lo por escrito e esperar com seu acompanhante.</li><li><strong>17 a 32 segundos.</strong> Passo 2. Sentar na cadeira. Lucas está sentado na cadeira odontológica verde, com a mãe ao lado. A dentista avisa antes de inclinar a cadeira. Você pode pedir uma pausa a qualquer momento.</li><li><strong>32 a 48 segundos.</strong> Passo 3. A luz acende. Lucas usa óculos escuros na cadeira. A dentista mostra a luminária acima dele. Você pode combinar o uso de óculos escuros e de fones abafadores antes do atendimento.</li><li><strong>48 a 63 segundos.</strong> Passo 4. Acabou. Lucas e a mãe caminham de mãos dadas em direção a uma casa. A dentista avisa quando a consulta termina. Você pega suas coisas e vai para casa com seu acompanhante.</li></ol></details>
         </div>
 
         <div role="tabpanel" id="painel-sala" aria-labelledby="aba-sala" tabindex="-1" hidden>
           <div class="grade-2 grade-2--meio">
             <figure class="fig">
               <span class="credito">Imagem gerada por IA</span>
-              <img src="img/sala-atendimento.svg" width="960" height="560" alt="Sala 3 de atendimento: cadeira odontológica reclinável azul-petróleo, luminária desligada, armário claro e janela com persiana.">
+              <img src="img/sala-atendimento.jpg" width="960" height="560" alt="Sala ilustrada com cadeira odontológica azul-petróleo, luminária desligada, armário claro e janela.">
               <figcaption>Sala 3, no térreo. A janela tem persiana para diminuir a luz.</figcaption>
             </figure>
             <div>
@@ -544,7 +536,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
           <div class="grade-2 grade-2--meio">
             <figure class="fig">
               <span class="credito">Imagem gerada por IA</span>
-              <img src="img/kit-sensorial.svg" width="900" height="500" alt="Kit sensorial sobre uma mesa: fones abafadores de ruído, óculos escuros, bolinha de apertar e garrafa de água, cada um com seu nome escrito embaixo.">
+              <img src="img/kit-sensorial.jpg" width="900" height="500" alt="Kit sensorial sobre uma mesa: fones abafadores de ruído, óculos escuros e bolinha de apertar.">
             </figure>
             <div>
               <h2>Kit sensorial da clínica</h2>
@@ -553,7 +545,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
                 <li><strong>Fones abafadores:</strong> diminuem o barulho do motor.</li>
                 <li><strong>Óculos escuros:</strong> para a luz forte.</li>
                 <li><strong>Bolinha de apertar:</strong> para as mãos.</li>
-                <li><strong>Água:</strong> para enxaguar a boca quando quiser.</li>
+                
               </ul>
             </div>
           </div>
@@ -563,7 +555,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
 
     <!-- ===================== TELECONSULTA ===================== -->
     <section class="vista" data-rota="teleconsulta" aria-labelledby="t-tele" hidden>
-      <h1 id="t-tele" tabindex="-1">Teleconsulta</h1>
+      <h1 id="t-tele" tabindex="-1">Teleconsulta</h1><p class="aviso">Demonstração por texto. As opções de câmera, áudio e legendas representam preferências; não há transmissão de som ou imagem.</p>
       <div id="tele-preparo">
         <div class="grade-2">
           <div>
@@ -590,7 +582,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
           <div>
             <figure class="fig">
               <span class="credito">Imagem gerada por IA</span>
-              <img src="img/teleconsulta.svg" width="960" height="540" alt="Mulher sentada diante de um notebook em teleconsulta por mensagens de texto; o ícone da câmera está riscado e uma placa diz Câmera desligada.">
+              <img src="img/teleconsulta.jpg" width="960" height="540" alt="Mulher usando um notebook para conversar por mensagens de texto, sem imagem de câmera.">
             </figure>
             <div class="cartao">
               <h2 class="cartao__tit">O que vai acontecer</h2>
@@ -642,15 +634,16 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
       <h1 id="t-ativ" tabindex="-1">Escovar os dentes</h1>
       <p class="lead">São 5 passos. Cada passo tem um tempo. Quando o último passo acaba, a atividade acaba. Não tem compras, prêmio-surpresa nem propaganda.</p>
       <div class="tempo-tela">
-        <span id="tempo-tela-rot">Tempo de tela combinado com a mãe hoje: 15 minutos. Já usados: 4 minutos.</span>
-        <div class="barra" role="progressbar" aria-labelledby="tempo-tela-rot" aria-valuemin="0" aria-valuemax="15" aria-valuenow="4" aria-valuetext="4 de 15 minutos usados"><span style="width:26.6%"></span></div>
+        <span id="tempo-tela-rot">Tempo de atividade nesta sessão: 0 minutos. Referência combinada com o responsável: 15 minutos.</span>
+        <div class="barra" role="progressbar" aria-labelledby="tempo-tela-rot" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" aria-valuetext="0 de 15 minutos usados"><span style="width:0%"></span></div>
       </div>
 
+      <p class="dica">Sequência ilustrativa: combine a técnica e o tempo de escovação com seu dentista. O temporizador demonstra a interação e não prescreve a duração do cuidado.</p>
       <div class="ativ" id="ativ">
         <div class="ativ__painel">
           <p class="ativ__agora" id="ativ-agora" aria-live="polite"></p>
           <div class="ativ__centro">
-            <img id="ativ-img" src="img/escova-1-molhar.svg" width="240" height="240" alt="">
+            <img id="ativ-img" src="img/escova-1-molhar.jpg" width="240" height="240" alt="">
             <div class="relogio" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="relogio__fundo"/><circle cx="60" cy="60" r="52" class="relogio__arco" id="relogio-arco" pathLength="100"/></svg><span id="relogio-num">30</span></div>
           </div>
           <p class="ativ__timer" role="timer" aria-live="off" id="ativ-timer">Faltam 30 segundos neste passo.</p>
@@ -673,7 +666,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
       <div class="ativ-fim" id="ativ-fim" hidden>
         <figure class="fig fig--peq">
           <span class="credito">Imagem gerada por IA</span>
-          <img src="img/dente-feliz.svg" width="520" height="360" alt="Dente sorridente e limpo, com dois pequenos brilhos.">
+          <img src="img/dente-feliz.jpg" width="520" height="360" alt="Dente sorridente e limpo, com dois pequenos brilhos.">
         </figure>
         <div>
           <h2 tabindex="-1" id="t-ativ-fim">Acabou! Você escovou os dentes.</h2>
@@ -689,7 +682,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
 
     <!-- ===================== AJUDA ===================== -->
     <section class="vista" data-rota="ajuda" aria-labelledby="t-ajuda" hidden>
-      <h1 id="t-ajuda" tabindex="-1">Ajuda por mensagem</h1>
+      <h1 id="t-ajuda" tabindex="-1">Ajuda por mensagem</h1><p class="aviso">Esta é uma simulação do atendimento humano proposto. As respostas são automáticas e não chegam a uma pessoa.</p>
       <p class="lead">Você fala com uma pessoa da recepção, por escrito. Nenhum atendimento exige ligação ou menu de voz.</p>
       <div class="grade-2">
         <section class="cartao" aria-labelledby="t-chat">
@@ -716,7 +709,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
         <div class="pilha">
           <figure class="fig">
             <span class="credito">Imagem gerada por IA</span>
-            <img src="img/ajuda-texto.svg" width="800" height="480" alt="Atendente com fone de ouvido e uma paciente conversando por mensagens de texto em um celular, sem ligação telefônica.">
+            <img src="img/ajuda-texto.jpg" width="800" height="480" alt="Atendente e paciente trocam mensagens escritas usando dispositivos, sem ligação telefônica.">
           </figure>
           <section class="cartao" aria-labelledby="t-faq">
             <h2 id="t-faq" class="cartao__tit">Perguntas frequentes</h2>
@@ -736,7 +729,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
 
     <!-- ===================== NOVIDADES ===================== -->
     <section class="vista" data-rota="novidades" aria-labelledby="t-novid" hidden>
-      <h1 id="t-novid" tabindex="-1">Novidades do app</h1>
+      <p class="aviso">Prévia de estudo: a escolha fica salva, mas esta versão não instala uma nova interface automaticamente.</p><h1 id="t-novid" tabindex="-1">Novidades do app</h1>
       <div class="aviso aviso--info">
         <h2 class="aviso__tit">Mudança prevista para 1º de dezembro de 2026</h2>
         <p>Avisamos com antecedência para você se preparar. <strong>Nada muda sem você aceitar.</strong></p>
@@ -744,12 +737,12 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
       <div class="grade-2">
         <figure class="fig">
           <span class="credito">Imagem gerada por IA</span>
-          <img src="img/visual-atual.svg" width="480" height="390" alt="Miniatura do visual atual: três botões empilhados e, embaixo, a barra Início, Consultas, Ajuda e Ajustes.">
+          <img src="img/visual-atual.jpg" width="480" height="390" alt="Ilustração conceitual do visual atual: três botões empilhados e quatro ícones de navegação embaixo.">
           <figcaption><strong>Como é hoje.</strong></figcaption>
         </figure>
         <figure class="fig">
           <span class="credito">Imagem gerada por IA</span>
-          <img src="img/visual-novo.svg" width="480" height="390" alt="Miniatura do novo visual: os mesmos três botões, agora mais altos e com ícones, um lembrete de escovação e a mesma barra de navegação embaixo.">
+          <img src="img/visual-novo.jpg" width="480" height="390" alt="Ilustração conceitual do novo visual: os mesmos três botões, agora mais altos e com ícones, um lembrete de escovação e quatro ícones de navegação embaixo.">
           <figcaption><strong>Como vai ficar.</strong></figcaption>
         </figure>
       </div>
@@ -817,6 +810,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
           <p>Deixa abertas só as telas “Como é a consulta” e “Escovar os dentes”. Para sair, um adulto digita um PIN de 4 números.</p>
           <button type="button" class="interruptor" role="switch" aria-checked="false" id="sw-bloqueio"><span><strong>Modo bloqueado</strong><small id="bloq-estado">Desligado</small></span><span class="sw" aria-hidden="true"></span></button>
         </section>
+        <section class="cartao"><h2>Dados da demonstração</h2><p>Apague consultas, conversas, cadastro e preferências salvos neste navegador.</p><button type="button" class="btn btn--sec" id="btn-apagar-dados">Apagar dados de demonstração</button></section>
         <section class="cartao" aria-labelledby="t-restaurar">
           <h2 id="t-restaurar" class="cartao__tit">Voltar ao começo</h2>
           <p>Volta todas as preferências ao padrão. Suas consultas não são apagadas.</p>
@@ -856,7 +850,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
     <!-- ===================== ACESSIBILIDADE ===================== -->
     <section class="vista vista--texto" data-rota="acessibilidade" aria-labelledby="t-acess" hidden>
       <h1 id="t-acess" tabindex="-1">Acessibilidade deste site</h1>
-      <p class="lead">Este site foi feito para pessoas autistas e seus responsáveis, e também para pessoas idosas. Ele segue a WCAG 2.2 (nível AA), a ABNT NBR 17225:2025, as recomendações do W3C para acessibilidade cognitiva (COGA) e as diretrizes AASPIRE para usuários autistas.</p>
+      <p class="lead">Este site foi feito para pessoas autistas e seus responsáveis, e também para pessoas idosas. Seu desenvolvimento usa como referências a WCAG 2.2 (nível AA), a ABNT NBR 17225:2025, as recomendações do W3C para acessibilidade cognitiva (COGA) e as diretrizes AASPIRE para usuários autistas.</p>
 
       <h2>Recursos disponíveis</h2>
       <ul class="lista-check">
@@ -919,10 +913,11 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
         </table>
       </div>
 
-      <h2>Limitações conhecidas</h2>
+      <p>Os níveis de uso acima são objetivos de projeto, ainda sujeitos a avaliação com usuários autistas, pessoas idosas e tecnologias assistivas. Não constituem certificação de conformidade integral.</p>
+      <p><a href="docs/relatorio.html">Ler o relatório de revisão e a matriz da ABNT em HTML</a> · <a href="docs/relatorio-acessibilidade.pdf">Baixar o relatório complementar (PDF)</a></p><h2>Limitações conhecidas</h2>
       <ul>
         <li>O VLibras depende do serviço do Governo Federal; sem internet, o botão “Libras” avisa que não carregou.</li>
-        <li>O vídeo não tem áudio por escolha de projeto (hipersensibilidade auditiva). A transcrição completa, com a descrição das imagens, substitui a audiodescrição.</li>
+        <li>O vídeo começa mudo e oferece narração descritiva opcional, legendas e transcrição. A qualidade da descrição e das traduções do VLibras deve ser validada com usuários.</li>
         <li>A clínica, os profissionais, os telefones e os e-mails são fictícios. As conversas são simuladas.</li>
       </ul>
       <p>Encontrou uma barreira? <a href="#/ajuda">Conte para nós por mensagem</a>.</p>
@@ -931,7 +926,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
     <!-- ===================== CRÉDITOS ===================== -->
     <section class="vista vista--texto" data-rota="creditos" aria-labelledby="t-cred" hidden>
       <h1 id="t-cred" tabindex="-1">Créditos das imagens e do vídeo</h1>
-      <p class="lead">Todas as imagens e o vídeo deste site são ilustrações originais geradas por IA (Claude Opus 5.5, da Anthropic), escritas como código vetorial SVG em novembro de 2026, seguindo a paleta do protótipo no Figma. Nenhuma imagem se repete. O canto superior direito de cada imagem também indica a origem.</p>
+      <p class="lead">As ilustrações foram recriadas com o gerador de imagens GPT da OpenAI em novembro de 2026. O logotipo e os ícones são vetoriais. O vídeo foi remontado com as quatro cenas GPT e narração descritiva sintética em português (voz Luciana do macOS), disponível por escolha do usuário. As pessoas e os ambientes ilustrados são fictícios. Os prompts completos constam da documentação complementar.</p>
       <div class="tabela-rolagem">
         <table>
           <caption>Lista de imagens e onde aparecem</caption>
@@ -1006,7 +1001,7 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
     <section aria-labelledby="r-sobre">
       <h2 id="r-sobre">Sobre este projeto</h2>
       <p>Trabalho da disciplina SCC0580 – Acessibilidade em Sistemas Computacionais (ICMC/USP, 2026). Feito em HTML, CSS e JavaScript, sem bibliotecas.</p>
-      <p><strong>Imagens e vídeo:</strong> ilustrações geradas por IA (Claude Opus 5.5, Anthropic). <a href="#/creditos">Ver a lista completa</a>.</p>
+      <p><strong>Imagens e vídeo:</strong> ilustrações GPT/OpenAI; ícones vetoriais; vídeo com cenas GPT e voz sintética Luciana/macOS. <a href="#/creditos">Ver a lista completa</a>.</p>
     </section>
   </div>
   <p class="largura rodape__fim">A clínica, os profissionais, os contatos e as conversas são fictícios, criados para fins acadêmicos.</p>
@@ -1050,12 +1045,13 @@ if(p.espaco)h.classList.add('espaco');if(p.perfil)h.dataset.perfil=p.perfil;}cat
   </div>
 </dialog>
 
+<dialog class="dialogo" id="dlg-apagar" aria-labelledby="dlg-apagar-tit"><h2 id="dlg-apagar-tit">Apagar os dados salvos?</h2><p>Isso remove as consultas e conversas de demonstração e restaura as preferências neste navegador.</p><div class="botoes"><button type="button" class="btn btn--sec" data-fechar>Não, manter os dados</button><button type="button" class="btn btn--prim" id="confirmar-apagar">Sim, apagar os dados</button></div></dialog>
 <!-- VLibras (Governo Federal) -->
 <div vw class="enabled">
   <div vw-access-button class="active"></div>
   <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
 </div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+<script id="vlibras-script" src="https://vlibras.gov.br/app/vlibras-plugin.js" async></script>
 <script src="js/app.js" defer></script>
 </body>
 </html>

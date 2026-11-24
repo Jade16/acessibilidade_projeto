@@ -9,7 +9,10 @@
   const html = document.documentElement;
 
   /* ------------------------------------------------------------ VLibras */
-  try { if (window.VLibras) new window.VLibras.Widget('https://vlibras.gov.br/app'); } catch (e) { /* sem internet */ }
+  let librasIniciado = false;
+  function iniciarLibras() { try { if (window.VLibras && !librasIniciado) { new window.VLibras.Widget('https://vlibras.gov.br/app'); librasIniciado = true; } } catch (e) { /* O botão informa a indisponibilidade. */ } }
+  document.getElementById('vlibras-script').addEventListener('load', iniciarLibras);
+  iniciarLibras();
 
   /* ------------------------------------------------------------ estado */
   const CHAVE = 'sorriso:v1';
@@ -27,7 +30,7 @@
       ultimaId: s.ultimaId || null
     };
   }
-  function salvar() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) { /* modo privado */ } }
+  function salvar() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); const aviso = document.getElementById('storage-aviso'); if (aviso) aviso.hidden = true; return true; } catch (e) { const aviso = document.getElementById('storage-aviso'); if (aviso) { aviso.hidden = false; aviso.textContent = 'Não foi possível salvar neste navegador. Você pode continuar nesta tela, mas os dados podem se perder ao fechar ou recarregar.'; } return false; } }
 
   function anunciar(msg) {
     const el = $('#aviso-sr');
@@ -170,11 +173,11 @@
   function radiogroup(grupo, aoMudar) {
     const itens = () => $$('[role="radio"]', grupo).filter((r) => r.getAttribute('aria-disabled') !== 'true');
     function marcar(r) { itens().forEach((x) => { const s = x === r; x.setAttribute('aria-checked', s ? 'true' : 'false'); x.tabIndex = s ? 0 : -1; }); }
-    function escolher(r, foco) { marcar(r); if (foco) r.focus(); if (aoMudar) aoMudar(r.dataset.valor, r); }
+    function escolher(r, foco) { if (!r || r.getAttribute('aria-disabled') === 'true') return; marcar(r); if (foco) r.focus(); if (aoMudar) aoMudar(r.dataset.valor, r); }
     grupo.addEventListener('click', (e) => { const r = e.target.closest('[role="radio"]'); if (r && grupo.contains(r)) escolher(r, true); });
     grupo.addEventListener('keydown', (e) => {
       const r = e.target.closest('[role="radio"]'); if (!r) return;
-      const l = itens(); let i = l.indexOf(r);
+      const l = itens(); if (!l.length || r.getAttribute('aria-disabled') === 'true') return; let i = l.indexOf(r);
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') i = (i + 1) % l.length;
       else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') i = (i - 1 + l.length) % l.length;
       else if (e.key === 'Home') i = 0;
@@ -264,6 +267,8 @@
   $('#btn-desbloquear').addEventListener('click', () => pedirPin('desbloquear'));
 
   /* restaurar preferências */
+  $('#btn-apagar-dados').addEventListener('click', () => abrirDialogo($('#dlg-apagar')));
+  $('#confirmar-apagar').addEventListener('click', () => { try { localStorage.removeItem(CHAVE); location.hash = '#/inicio'; location.reload(); } catch (e) { $('#dlg-apagar').close(); mensagem('Não foi possível apagar os dados neste navegador.'); } });
   $('#btn-restaurar').addEventListener('click', () => abrirDialogo($('#dlg-restaurar')));
   $('#dlg-restaurar-sim').addEventListener('click', () => {
     const perfil = estado.prefs.perfil;
@@ -466,7 +471,8 @@
     contarObs();
   }
   const autosalvar = debounce(() => {
-    lerForm(); salvar();
+    lerForm(); const gravado = salvar();
+    if (!gravado) { $('#salvo').textContent = 'Ainda não foi possível salvar. Mantenha esta página aberta.'; return; }
     const a = new Date();
     $('#salvo').textContent = `Salvo automaticamente às ${pad(a.getHours())}h${pad(a.getMinutes())}. Não há limite de tempo.`;
   }, 400);
@@ -536,7 +542,7 @@
       else if (dn > hoje()) add($('#nasc'), 'erro-nasc', 'A data de nascimento não pode ser depois de hoje. Confira o ano.');
       const cd = (x.cpf || '').replace(/\D/g, '');
       if (cd.length !== 11) add($('#cpf'), 'erro-cpf', `O CPF tem 11 números. Você escreveu ${cd.length}. Exemplo: 123.456.789-09.`);
-      else if (!cpfValido(x.cpf)) add($('#cpf'), 'erro-cpf', 'Este CPF não existe. Confira os números no seu documento.');
+      else if (!cpfValido(x.cpf)) add($('#cpf'), 'erro-cpf', 'Os dígitos do CPF não conferem. Use o exemplo fictício 123.456.789-09 para testar.');
       const cel = (x.cel || '').replace(/\D/g, '');
       if (cel.length !== 11 || cel[2] !== '9') add($('#cel'), 'erro-cel', 'Escreva o celular com DDD: 11 números, começando com o DDD e depois o 9. Exemplo: (16) 99876-5432.');
       if (!emailValido(x.email || '')) add($('#email'), 'erro-email', 'Escreva o e-mail completo, com @ e o final. Exemplo: marina@email.com.');
@@ -776,16 +782,16 @@
   /* ------------------------------------------------------------ COMO É A CONSULTA */
   const abasComo = abas($('[data-rota="como-e"] [data-abas]'));
   const PASSOS = [
-    { img: 'picto-1-chegar.svg', alt: 'Pictograma de relógio: chegar e esperar cerca de 10 minutos.', t: 'Chegar e esperar',
+    { img: 'picto-1-chegar.jpg', alt: 'Ilustração: Lucas e a mãe chegam à recepção da clínica.', t: 'Chegar e esperar',
       m: 'Você chega, fala seu nome na recepção e espera sentada ou do lado de fora. A espera dura cerca de 10 minutos.',
       l: 'Você chega com sua mãe. Você fala seu nome. Você espera sentado. Dura uns 10 minutos.' },
-    { img: 'picto-2-cadeira.svg', alt: 'Pictograma de cadeira odontológica que deita um pouco para trás.', t: 'Sentar na cadeira',
+    { img: 'picto-2-cadeira.jpg', alt: 'Ilustração: Lucas senta na cadeira odontológica, acompanhado da mãe.', t: 'Sentar na cadeira',
       m: 'Você senta numa cadeira que deita um pouco para trás. A dentista avisa antes de mexer na cadeira.',
       l: 'Você senta na cadeira. A cadeira deita um pouco. A Dra. Ana avisa antes.' },
-    { img: 'picto-3-luz.svg', alt: 'Pictograma de luz acesa e de óculos escuros: a luz é forte, mas não esquenta.', t: 'A luz acende',
+    { img: 'picto-3-luz.jpg', alt: 'Ilustração: Lucas usa óculos escuros enquanto a dentista apresenta a luz.', t: 'A luz acende',
       m: 'Uma luz forte acende em cima de você. Ela não esquenta. Você pode usar óculos escuros e fones abafadores.',
       l: 'Uma luz forte acende. Ela não esquenta. Você pode usar óculos escuros.' },
-    { img: 'picto-4-casa.svg', alt: 'Pictograma de casa: a consulta acabou e é hora de ir para casa.', t: 'Acabou! Ir para casa',
+    { img: 'picto-4-casa.jpg', alt: 'Ilustração: Lucas e a mãe voltam para casa depois da consulta.', t: 'Acabou! Ir para casa',
       m: 'A dentista diz “acabou”. Você levanta, pega suas coisas e vai embora.',
       l: 'A Dra. Ana diz: “acabou!”. Você levanta e vai para casa com sua mãe.' }
   ];
@@ -825,6 +831,8 @@
 
   /* vídeo: nunca começa sozinho; controles extras grandes */
   const video = $('#video-historia');
+  $('#vid-narracao').addEventListener('click', () => { video.muted = !video.muted; });
+  video.addEventListener('volumechange', () => { const ativo = !video.muted && video.volume > 0; $('#vid-narracao').setAttribute('aria-pressed', String(ativo)); $('#vid-narracao').textContent = ativo ? 'Narração ligada' : 'Narração desligada'; });
   const trilhaLegenda = () => (video.textTracks && video.textTracks[0]) || null;
   video.addEventListener('loadedmetadata', () => { const t = trilhaLegenda(); if (t) t.mode = 'showing'; });
   $('#vid-play').addEventListener('click', () => { if (video.paused) video.play().catch(() => {}); else video.pause(); });
@@ -923,11 +931,11 @@
 
   /* ------------------------------------------------------------ ATIVIDADE: ESCOVAR */
   const ESCOVA = [
-    { t: 'Molhar a escova', img: 'escova-1-molhar.svg', alt: 'Pictograma: molhar a escova na água da torneira.' },
-    { t: 'Escovar os dentes de cima', img: 'escova-2-cima.svg', alt: 'Pictograma: escovar os dentes de cima, destacados em verde.' },
-    { t: 'Escovar os dentes de baixo', img: 'escova-3-baixo.svg', alt: 'Pictograma: escovar os dentes de baixo, destacados em verde.' },
-    { t: 'Escovar a língua', img: 'escova-4-lingua.svg', alt: 'Pictograma: escovar a língua com cuidado.' },
-    { t: 'Cuspir e enxaguar a boca', img: 'escova-5-enxaguar.svg', alt: 'Pictograma: copo com água para cuspir e enxaguar a boca.' }
+    { t: 'Molhar a escova', img: 'escova-1-molhar.jpg', alt: 'Pictograma: molhar a escova na água da torneira.' },
+    { t: 'Escovar os dentes de cima', img: 'escova-2-cima.jpg', alt: 'Pictograma: escovar os dentes de cima, destacados em verde.' },
+    { t: 'Escovar os dentes de baixo', img: 'escova-3-baixo.jpg', alt: 'Pictograma: escovar os dentes de baixo, destacados em verde.' },
+    { t: 'Escovar a língua', img: 'escova-4-lingua.jpg', alt: 'Pictograma: escovar a língua com cuidado.' },
+    { t: 'Cuspir o excesso de pasta', img: 'escova-5-enxaguar.jpg', alt: 'Ilustração: menino cospe o excesso de pasta na pia, sem enxaguar a boca.' }
   ];
   let aPasso = 0, aResta = 30, aRodando = false, aTimer = null, aIniciou = false;
   const duracaoPasso = () => +$('#ativ-duracao').value;
@@ -954,12 +962,22 @@
       o.start(); o.stop(ctx.currentTime + 0.18);
     } catch (e) { /* sem áudio */ }
   }
+  let segundosAtividade = 0;
   function tique() {
+    if (document.hidden) return;
+    segundosAtividade++;
+    const minutos = Math.floor(segundosAtividade / 60);
+    $('#tempo-tela-rot').textContent = `Tempo de atividade nesta sessão: ${minutos} minutos. Referência combinada com o responsável: 15 minutos.`;
+    const barra = $('.tempo-tela [role="progressbar"]');
+    barra.setAttribute('aria-valuenow', Math.min(15, minutos));
+    barra.setAttribute('aria-valuetext', `${minutos} de 15 minutos usados`);
+    $('span', barra).style.width = Math.min(100, segundosAtividade / 900 * 100) + '%';
     aResta--;
-    if (aResta <= 0) { proximoPassoAtiv(); return; }
+    if (aResta <= 0) { clearInterval(aTimer); aRodando = false; relogio(); botaoIniciar(); anunciar('Tempo deste passo concluído. Quando estiver pronto, escolha Ir para o próximo passo.'); return; }
     relogio();
   }
   function proximoPassoAtiv() {
+    clearInterval(aTimer); aRodando = false; botaoIniciar();
     bip();
     if (aPasso >= ESCOVA.length - 1) { terminarAtiv(); return; }
     aPasso++; aResta = duracaoPasso(); renderAtiv();
@@ -967,7 +985,7 @@
   function botaoIniciar() { $('#ativ-iniciar').textContent = aRodando ? 'Pausar' : aIniciou ? 'Continuar' : 'Começar'; }
   $('#ativ-iniciar').addEventListener('click', () => {
     if (aRodando) { clearInterval(aTimer); aRodando = false; anunciar('Pausado.'); }
-    else { aIniciou = true; aRodando = true; aTimer = setInterval(tique, 1000); anunciar(`Começou. ${ESCOVA[aPasso].t}.`); }
+    else { if (aResta <= 0) { anunciar('Este passo terminou. Escolha Ir para o próximo passo.'); return; } aIniciou = true; aRodando = true; aTimer = setInterval(tique, 1000); anunciar(`Começou. ${ESCOVA[aPasso].t}.`); }
     botaoIniciar();
   });
   $('#ativ-pular').addEventListener('click', proximoPassoAtiv);
@@ -1050,7 +1068,7 @@
     const i = $('#entrar-email');
     if (!emailValido(i.value.trim())) { mostrarErro(i, $('#erro-entrar-email'), 'Escreva o e-mail completo, com @ e o final. Exemplo: marina@email.com.'); i.focus(); return; }
     limparErro(i, $('#erro-entrar-email'));
-    $('#entrar-msg').textContent = `Enviamos o link de acesso para ${i.value.trim()}.`;
+    $('#entrar-msg').textContent = `Simulação de acesso para ${i.value.trim()}. Nenhum e-mail foi enviado; use o botão abaixo para continuar.`;
     $('#form-entrar').hidden = true; $('#entrar-enviado').hidden = false; $('#t-entrar-ok').focus();
   });
   $('#btn-abrir-link').addEventListener('click', () => {
@@ -1072,18 +1090,18 @@
 
   /* ------------------------------------------------------------ CRÉDITOS */
   const IMAGENS = [
-    ['logo.svg', 'Cabeçalho (logotipo) e ícone da aba'], ['recepcao.svg', 'Início'], ['avatar-marina.svg', 'Início – escolha de perfil'],
-    ['avatar-lucas.svg', 'Início – escolha de perfil'], ['dra-ana.svg', 'Agendar – etapa 2'], ['dr-rafael.svg', 'Agendar – etapa 2'],
-    ['dra-helena.svg', 'Agendar – etapa 2'], ['confirmado.svg', 'Consulta marcada'], ['fachada.svg', 'Consulta marcada – como chegar'],
-    ['picto-1-chegar.svg', 'Como é a consulta – passo 1'], ['picto-2-cadeira.svg', 'Como é a consulta – passo 2'],
-    ['picto-3-luz.svg', 'Como é a consulta – passo 3'], ['picto-4-casa.svg', 'Como é a consulta – passo 4'],
-    ['historia-da-consulta.mp4 e capa', 'Como é a consulta – vídeo (5 cenas próprias, sem áudio, com legendas)'],
-    ['sala-atendimento.svg', 'Como é a consulta – a sala'], ['kit-sensorial.svg', 'Como é a consulta – kit sensorial'],
-    ['teleconsulta.svg', 'Teleconsulta'], ['escova-1-molhar.svg a escova-5-enxaguar.svg', 'Escovar os dentes – um pictograma por passo'],
-    ['dente-feliz.svg', 'Escovar os dentes – fim'], ['ajuda-texto.svg', 'Ajuda por mensagem'],
-    ['visual-atual.svg', 'Novidades – como é hoje'], ['visual-novo.svg', 'Novidades – como vai ficar']
+    ['logo.svg', 'Cabeçalho (logotipo) e ícone da aba'], ['recepcao.jpg', 'Início'], ['avatar-marina.jpg', 'Início – escolha de perfil'],
+    ['avatar-lucas.jpg', 'Início – escolha de perfil'], ['dra-ana.jpg', 'Agendar – etapa 2'], ['dr-rafael.jpg', 'Agendar – etapa 2'],
+    ['dra-helena.jpg', 'Agendar – etapa 2'], ['confirmado.jpg', 'Consulta marcada'], ['fachada.jpg', 'Consulta marcada – como chegar'],
+    ['picto-1-chegar.jpg', 'Como é a consulta – passo 1'], ['picto-2-cadeira.jpg', 'Como é a consulta – passo 2'],
+    ['picto-3-luz.jpg', 'Como é a consulta – passo 3'], ['picto-4-casa.jpg', 'Como é a consulta – passo 4'],
+    ['historia-da-consulta.mp4 e capa', 'Como é a consulta – vídeo (4 cenas GPT, narração opcional e legendas)'],
+    ['sala-atendimento.jpg', 'Como é a consulta – a sala'], ['kit-sensorial.jpg', 'Como é a consulta – kit sensorial'],
+    ['teleconsulta.jpg', 'Teleconsulta'], ['escova-1-molhar.jpg a escova-5-enxaguar.jpg', 'Escovar os dentes – um pictograma por passo'],
+    ['dente-feliz.jpg', 'Escovar os dentes – fim'], ['ajuda-texto.jpg', 'Ajuda por mensagem'],
+    ['visual-atual.jpg', 'Novidades – como é hoje'], ['visual-novo.jpg', 'Novidades – como vai ficar']
   ];
-  $('#tabela-creditos').innerHTML = IMAGENS.map(([f, o]) => `<tr><td><code>${esc(f)}</code></td><td>${esc(o)}</td><td>Gerada por IA (Claude Opus 5.5, Anthropic), código SVG original, nov. 2026</td></tr>`).join('');
+  $('#tabela-creditos').innerHTML = IMAGENS.map(([f, o]) => `<tr><td><code>${esc(f)}</code></td><td>${esc(o)}</td><td>${f === 'logo.svg' ? 'Logotipo vetorial revisado com apoio de GPT' : f.includes('mp4') ? 'Cenas GPT/OpenAI; narração Luciana/macOS' : 'Imagem gerada com GPT/OpenAI, nov. 2026'}</td></tr>`).join('');
 
   /* ------------------------------------------------------------ início */
   aplicarPrefs();

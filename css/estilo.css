@@ -213,6 +213,26 @@ main { display: block; padding: 1rem 0 3rem; }
 
 .fig { position: relative; margin: 0; background: var(--superficie); border: 1px solid var(--borda); border-radius: 1rem; overflow: hidden; }
 .fig img { width: 100%; }
+body { overflow-wrap: anywhere; }
+main p { max-width: 80ch; }
+main *, .marca-linha > *, .ferramentas > * { min-width: 0; }
+button, .btn, input, select, textarea { max-width: 100%; white-space: normal; }
+.etapas, .perfis, .canais, .opcoes, .botoes { flex-wrap: wrap; }
+.tabela-rolagem { max-width: 100%; overflow-x: auto; }
+.opcoes--cartao { grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); }
+.opcoes--linha { grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); }
+.submenu { min-width: min(16rem, calc(100vw - 1rem)); }
+.ativ__centro img { max-width: 100%; height: auto; }
+@media (max-width: 30rem) {
+  .perfis, .canais { grid-template-columns: minmax(0, 1fr); }
+  .perfil, .canal, .prof, .interruptor, .acao { flex-wrap: wrap; }
+  .etapas { display: flex; }
+  .etapas li { flex: 1 1 4rem; }
+  .ativ__painel, .cartao, .sala { padding: .75rem; }
+  .largura { padding-left: .75rem; padding-right: .75rem; }
+  .menu__lista > li { min-width: 0; }
+  .ativ__lista li { flex-wrap: wrap; }
+}
 .fig figcaption { padding: .75rem 1rem; font-size: .9375rem; color: var(--texto-2); border-top: 1px solid var(--borda); }
 .fig--peq { max-width: 20rem; }
 .credito {
@@ -459,6 +479,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
 .relogio span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.25rem; font-weight: 800; font-variant-numeric: tabular-nums; }
 .ativ__timer { font-weight: 600; margin-top: 1rem; }
 .ativ__depois { color: var(--texto-2); }
+.ativ__painel .vel { display: flex; flex-wrap: wrap; width: fit-content; max-width: 100%; margin-top: 1.25rem; }
 .ativ__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
 .ativ__lista li { display: flex; align-items: center; gap: .75rem; padding: .5rem .75rem; border: 2px solid var(--borda); border-radius: .875rem; background: var(--superficie); }
 .ativ__lista img { width: 3.5rem; height: 3.5rem; flex: none; }
@@ -569,3 +590,41 @@ thead th { background: var(--superficie-2); }
   .fonte { flex-wrap: wrap; }
   .marca-linha { padding-top: .5rem; padding-bottom: .5rem; }
 }
+
+/* Revisão: texto longo, imagens e preferências do sistema. */
+.demo-nota { font-size: .9375rem; border-left: 3px solid var(--prim); padding: .5rem .8rem; color: var(--texto-2); }
+img { object-fit: contain; }
+.fig img { width: 100%; }
+button, a, label, dd, td, th { overflow-wrap: anywhere; }
+:focus-visible { outline: 3px solid var(--foco); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+@media (forced-colors: active) {
+  button, input, select, textarea, .opcao, [role="radio"] { border: 1px solid ButtonText; }
+  [aria-checked="true"], [aria-selected="true"], [aria-current] { outline: 2px solid Highlight; }
+}
+
+/* Refluxo com ampliação do texto em dispositivos estreitos. */
+body { overflow-wrap: anywhere; }
+main p { max-width: 80ch; }
+main *, .marca-linha > *, .ferramentas > * { min-width: 0; }
+button, .btn, input, select, textarea { max-width: 100%; white-space: normal; }
+.tabela-rolagem { max-width: 100%; overflow-x: auto; }
+.perfis, .canais { grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); }
+.opcoes--cartao { grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); }
+.opcoes--linha { grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); }
+.submenu { min-width: min(16rem, calc(100vw - 1rem)); }
+.vel { flex-wrap: wrap; max-width: 100%; }
+.ativ__centro img { max-width: 100%; height: auto; }
+@media (max-width: 30rem) {
+ .perfil, .canal, .prof, .interruptor, .acao { flex-wrap: wrap; }
+ .etapas { display: flex; flex-wrap: wrap; }
+ .etapas li { flex: 1 1 4rem; }
+ .ativ__painel, .cartao, .sala { padding: .75rem; }
+ .largura { padding-left: .75rem; padding-right: .75rem; }
+ .menu__lista > li { min-width: 0; }
+ .ativ__lista li { flex-wrap: wrap; }
+}
+
+@media (max-width: 48rem) { html { scroll-padding-bottom: 7rem; } main :focus { scroll-margin-bottom: 7rem; } }

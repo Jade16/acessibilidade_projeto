@@ -1,0 +1,292 @@
+{
+  "results": [
+    {
+      "theme": "claro",
+      "route": "inicio",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "claro",
+      "route": "agendar",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "claro",
+      "route": "consultas",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "claro",
+      "route": "como-e",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "claro",
+      "route": "teleconsulta",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "claro",
+      "route": "atividades",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "claro",
+      "route": "ajuda",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "claro",
+      "route": "novidades",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "claro",
+      "route": "ajustes",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "claro",
+      "route": "entrar",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "claro",
+      "route": "acessibilidade",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "claro",
+      "route": "creditos",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "claro",
+      "route": "mapa",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "claro",
+      "route": "nao-encontrada",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "escuro",
+      "route": "inicio",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "escuro",
+      "route": "agendar",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "escuro",
+      "route": "consultas",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "escuro",
+      "route": "como-e",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "escuro",
+      "route": "teleconsulta",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "escuro",
+      "route": "atividades",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "escuro",
+      "route": "ajuda",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "escuro",
+      "route": "novidades",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "escuro",
+      "route": "ajustes",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "escuro",
+      "route": "entrar",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "escuro",
+      "route": "acessibilidade",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "escuro",
+      "route": "creditos",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "escuro",
+      "route": "mapa",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "escuro",
+      "route": "nao-encontrada",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "inicio",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "agendar",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "contraste",
+      "route": "consultas",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "como-e",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "teleconsulta",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "atividades",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "contraste",
+      "route": "ajuda",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "novidades",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "ajustes",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "entrar",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "acessibilidade",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "theme": "contraste",
+      "route": "creditos",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "mapa",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "theme": "contraste",
+      "route": "nao-encontrada",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "layout": [],
+  "errors": []
+}

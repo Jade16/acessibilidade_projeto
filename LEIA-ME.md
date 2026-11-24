@@ -1,49 +1,42 @@
-# Clínica Sorriso – versão final acessível (SCC0580)
+# Clínica Sorriso - versão revisada
 
-Site estático (HTML, CSS e JavaScript puros, sem bibliotecas). Abra `index.html` no navegador ou publique a pasta inteira no GitHub Pages.
+Site estático em HTML, CSS e JavaScript. Abra index.html para explorar. Para reproduzir legendas VTT e evitar restrições de arquivos locais, sirva a pasta por HTTP (por exemplo: python3 -m http.server 8000) e acesse http://localhost:8000.
 
-## Caminhos felizes
+## Conteúdo da revisão
 
-**Marina (23 anos, TEA nível 1) – agendar consulta presencial**
-Início → Agendar consulta → 1. O quê (para mim, avaliação e limpeza, na clínica) → 2. Quando (Dra. Ana Lima, dia e horário com as setas) → 3. Conforto (sala silenciosa, avisar antes de cada etapa…) → 4. Seus dados (ou “Entrar sem senha”) → 5. Revisar → Confirmar → Consulta marcada (baixar lembrete .ics, ver como é a consulta).
+- 25 imagens geradas com GPT/OpenAI: 24 ilustrações JPG em img/ e uma capa JPG em media/. Os SVG ilustrativos antigos foram substituídos; logo.svg foi simplificado e ícones funcionais continuam vetoriais.
+- Vídeo de quatro cenas, 63 segundos, narração descritiva opcional, legendas e transcrição. Som desligado por padrão.
+- Ajustes de refluxo até 320 px e texto até 200%; foco, controles, modo calmo, estados ARIA e salvamento com aviso de falha.
+- Atividade com avanço voluntário entre passos, tempo efetivamente medido, sem recompensas variáveis.
+- Serviços fictícios identificados como simulação. Botão para apagar os dados locais. O PIN limita rotas da aplicação, não é uma barreira de segurança do dispositivo.
+- VLibras carregado sem bloquear o funcionamento do site; exige conexão.
 
-**Marina – teleconsulta de retorno**
-Minhas consultas → Preparar e entrar na teleconsulta → escolher “Só mensagens” (câmera desligada) → Entrar na sala → responder às 3 perguntas → Sair da sala.
+## Fluxos
 
-**Lucas (9 anos, TEA nível 2) com a mãe**
-Início → “Quem está usando”: Lucas → Ver como é a consulta (4 pictogramas, vídeo sem som com legendas, sala e kit sensorial) → Escovar os dentes (5 passos com temporizador visual e fim previsível). A mãe pode ligar o Modo bloqueado em Preferências (PIN de teste: 1234).
+Marina: Início → Agendar → Para mim / Avaliação e limpeza / Na clínica → Dra. Ana / dia / horário → Conforto → Dados fictícios → Revisar → Confirmar.
 
-## Os 7 problemas e onde a solução aparece
+Dados de teste: Marina Oliveira; 14/03/2003; CPF 123.456.789-09; celular (16) 99123-4567; marina@example.com.
 
-| Problema | Solução no site |
-|---|---|
-| 1. Páginas densas, carrosséis e banners | Início com 3 ações, nada se move, Modo calmo ligado por padrão |
-| 2. Autoplay, sons e pop-ups | Vídeo sem autoplay e sem som, legendas e transcrição; leitura em voz só ao tocar; nenhum pop-up |
-| 3. Teleconsulta com câmera obrigatória | Escolha de canal (vídeo, áudio, mensagens), câmera e autoimagem desligadas, roteiro do que vai acontecer |
-| 4. Chatbots, URAs e telefone | Ajuda humana por mensagem, linguagem literal, resumo completo antes e depois de confirmar |
-| 5. Formulários longos, tempo-limite e CAPTCHA | 5 etapas com progresso, salvamento automático, sem tempo-limite, máscaras, erros que explicam como corrigir, entrar por link no e-mail |
-| 6. Atualizações que mudam o layout | Página Novidades com data, prévia e opção de manter o visual; menu sempre igual; modo bloqueado |
-| 7. Jogos com recompensas variáveis | Escovação com início, meio e fim, temporizador silencioso, sem compras nem prêmio-surpresa |
+Lucas com a mãe: escolher perfil Lucas → Como é a consulta → quatro passos, vídeo opcional → Escovar os dentes → começar, pausar e avançar → fim. O responsável pode criar um PIN de quatro números em Preferências. Não há PIN padrão nesta versão.
 
-## Recursos de acessibilidade obrigatórios
+Teleconsulta: usar o retorno demonstrativo → Só mensagens → entrar → responder às três perguntas → sair. Nenhum áudio ou vídeo real é transmitido.
 
-- Botões A−, A e A+ (87,5% a 200%, sem zoom do navegador) e Alto contraste no topo de todas as páginas.
-- VLibras (widget oficial) e botão “Libras” no topo.
-- WAI-ARIA em mais de 10 componentes (switch, radiogroup, tablist, aria-expanded, aria-current, log, timer, progressbar, aria-invalid, alert/status, aria-pressed). A tabela completa está na página Acessibilidade.
-- Atalhos Alt+1 (conteúdo), Alt+2 (menu) e Alt+3 (rodapé).
+## Documentação
 
-## Testes realizados (17/11/2026)
+- docs/relatorio-acessibilidade.pdf: documento complementar para avaliação.
+- docs/relatorio.html: conteúdo textual equivalente, incluindo matriz dos 146 itens da ABNT.
+- docs/prompts-imagens.json: prompts exatos usados no gerador integrado de imagens GPT.
+- docs/matriz-abnt.json: requisitos e recomendações com evidências e pendências.
+- docs/testes-*.json: evidências dos testes desta revisão.
 
-- axe-core 4 (regras WCAG 2.0/2.1/2.2 A e AA + boas práticas): 0 violações nas 15 telas, nos temas claro, escuro e alto contraste, incluindo etapas do formulário, erros, diálogos e sala de teleconsulta.
-- Caminho feliz automatizado (Playwright): 64 verificações, incluindo teclado (setas, Tab, Espaço, Esc), máscaras, mensagens de erro, recarregar sem perder dados, download do .ics e modo bloqueado.
-- Sem rolagem horizontal em celular (390 px), tablet (820 px) e computador (1440 px), inclusive com texto a 200%.
+## Verificação e limites
 
-## Imagens
+Os testes produzidos nesta revisão substituem as declarações de testes anteriores que não vieram acompanhadas de evidências. A bateria abrange 42 varreduras axe-core em 14 rotas e três temas, nove varreduras de estados de fluxo e 112 combinações de largura e tamanho de fonte. Consulte os JSONs para os resultados, inclusive itens inconclusivos.
 
-Todas as ilustrações (pasta `img/`) e o vídeo (`media/`) foram gerados por IA (Claude Opus 5.5, Anthropic) como código SVG original. Os créditos aparecem no canto superior direito de cada imagem, no rodapé e na página Créditos.
+Não há certificação integral ABNT/WCAG. Ainda são necessárias avaliação com público-alvo, leitores de tela e Libras, revisão clínica das instruções e publicação aberta. O widget externo não participa da bateria automatizada com rede bloqueada. Não inserir dados reais em demonstrações.
 
-## Publicar no GitHub Pages
+## Publicação
 
-1. Crie um repositório público e envie o conteúdo desta pasta (com `index.html` na raiz).
-2. Em Settings → Pages, escolha a branch `main` e a pasta `/ (root)`.
-3. O link fica no formato `https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/`.
+O repositório encontrado no projeto original é https://github.com/Jade16/acessibilidade_projeto. A revisão local não foi enviada ao repositório nem publicada automaticamente. Envie os arquivos revisados e confirme o GitHub Pages antes da avaliação. Inclua o endereço público no PDF após publicar.
+
+Figma informado no anexo: https://www.figma.com/design/M61oM5j5VmStUJZvlkaivN?node-id=1-16. Confirme que o compartilhamento está aberto.

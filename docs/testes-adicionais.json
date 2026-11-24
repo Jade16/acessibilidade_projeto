@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Teleconsulta inicia por texto sem captura de mídia",
+    "Roteiro da teleconsulta chega ao fim",
+    "Modo bloqueado habilitado",
+    "Área bloqueada pede PIN",
+    "Responsável consegue desbloquear",
+    "Espaçamento de texto não cria rolagem horizontal",
+    "Preferência de movimento reduzido",
+    "Falha de armazenamento é informada"
+  ]
+}

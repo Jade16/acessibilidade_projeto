@@ -1,0 +1,59 @@
+{
+  "checks": [
+    "Atalho de conteúdo move foco",
+    "Submenu abre por teclado",
+    "Escape fecha submenu",
+    "Seta muda perfil",
+    "Erros têm resumo e foco",
+    "Máscara de CPF",
+    "Rascunho preservado ao recarregar",
+    "Resumo inclui preferências",
+    "Consulta confirmada",
+    "Vídeo não reproduz automaticamente",
+    "Narração opcional",
+    "Temporizador pausa",
+    "Atividade tem fim",
+    "Diálogo modal de exclusão",
+    "Foco retorna após diálogo",
+    "Contraste funciona",
+    "Texto ampliado a 200%"
+  ],
+  "scans": [
+    {
+      "name": "erros etapa 1",
+      "violations": []
+    },
+    {
+      "name": "etapa 2",
+      "violations": []
+    },
+    {
+      "name": "etapa 3",
+      "violations": []
+    },
+    {
+      "name": "erros etapa 4",
+      "violations": []
+    },
+    {
+      "name": "etapa 5",
+      "violations": []
+    },
+    {
+      "name": "confirmado",
+      "violations": []
+    },
+    {
+      "name": "video",
+      "violations": []
+    },
+    {
+      "name": "fim atividade",
+      "violations": []
+    },
+    {
+      "name": "dialogo apagar",
+      "violations": []
+    }
+  ]
+}
